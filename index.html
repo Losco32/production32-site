@@ -552,8 +552,14 @@ document.querySelectorAll('.pf-btn').forEach(btn=>{
 // Lightbox (asset locali)
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCaption');
 let lbList=[],lbIdx=0;
-function showLB(){lbImg.src=lbList[lbIdx]}
-function openLB(imgs,cap){lbList=imgs;lbIdx=0;lbCap.textContent=cap;showLB();lb.classList.add('open');document.body.style.overflow='hidden'}
+function showLB(){lbImg.src='';lbImg.src=lbList[lbIdx]}
+lbImg.addEventListener('error',()=>{
+  lbList.splice(lbIdx,1);
+  if(!lbList.length){closeLB();return}
+  lbIdx=lbIdx%lbList.length;
+  showLB();
+},{passive:true});
+function openLB(imgs,cap){lbList=[...imgs];lbIdx=0;lbCap.textContent=cap;showLB();lb.classList.add('open');document.body.style.overflow='hidden'}
 function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
 document.getElementById('lbClose').onclick=closeLB;
 document.getElementById('lbPrev').onclick=()=>{lbIdx=(lbIdx-1+lbList.length)%lbList.length;showLB()};

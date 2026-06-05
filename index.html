@@ -91,7 +91,7 @@ nav.sc{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);padding:16px 
 .nav-links{display:flex;gap:38px;list-style:none}
 .nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g);position:relative;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--t);transition:width .35s var(--ease)}
-.nav-links a:hover{color:var(--n)}
+.nav-links a:hover{color:var(--td)}
 .nav-links a:hover::after{width:100%}
 .nav-toggle{display:none;background:none;border:none;font-family:var(--fb);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--n);cursor:pointer}
 
@@ -112,7 +112,7 @@ nav.sc{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);padding:16px 
 .hero-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--gm);background:radial-gradient(circle at 70% 30%,rgba(129,199,189,.14),transparent 60%),var(--nn)}
 .hero-ph .pn{font-family:var(--fh);font-size:clamp(80px,12vw,160px);font-weight:200;color:rgba(129,199,189,.18);line-height:1}
 .hero-vtxt{position:absolute;right:34px;bottom:48px;z-index:2;font-family:var(--fh);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.7);writing-mode:vertical-rl}
-.scroll-ind{position:absolute;bottom:36px;left:var(--pad);display:flex;flex-direction:column;gap:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gm)}
+.scroll-ind{position:absolute;bottom:48px;left:34px;z-index:2;display:flex;flex-direction:column;gap:10px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .scroll-ind::after{content:'';width:1px;height:46px;background:var(--t);animation:sl 1.8s var(--ease) infinite}
 @keyframes sl{0%,100%{opacity:1;transform:scaleY(1);transform-origin:top}50%{opacity:.25;transform:scaleY(.5);transform-origin:top}}
 
@@ -285,8 +285,8 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
     <img src="assets/hero.webp" alt="Set fotografico Production32" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="hero-ph" style="display:none"><div class="pn">32</div></div>
     <div class="hero-vtxt">Luigi Losco · Producer</div>
+    <div class="scroll-ind">Scroll</div>
   </div>
-  <div class="scroll-ind">Scroll</div>
 </section>
 
 <!-- SERVIZI -->

@@ -1,0 +1,149 @@
+/* ============================================================
+   PRODUCTION32 — SHARED STYLESHEET
+   Design system comune per le pagine interne multi-pagina.
+   index.html (homepage) mantiene il proprio <style> inline e
+   NON referenzia questo file — vedi nota in Sito-Web-Stato.md.
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --t:#81C7BD;--td:#5fa99f;--tl:#b8e0db;
+  --n:#1A1A1A;--nn:#101010;--w:#FFFFFF;
+  --g:#4A4A4A;--gm:#888888;--gl:#F2F2F2;--gb:#E4E4E4;
+  --fh:'Jost',sans-serif;--fb:'DM Sans',sans-serif;
+  --pad:clamp(24px,6vw,96px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:var(--fb);background:var(--w);color:var(--n);overflow-x:hidden;line-height:1.5}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--t);color:var(--n)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.vis{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{animation:none!important;scroll-behavior:auto}}
+
+/* SHARED ATOMS */
+.eyebrow{font-family:var(--fb);font-size:11px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--td);display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--t);flex:none}
+.eyebrow.light{color:var(--t)}
+.h-sec{font-family:var(--fh);font-weight:200;font-size:clamp(36px,5vw,68px);line-height:1.02;letter-spacing:-.02em;margin-top:24px}
+.h-sec em{font-style:normal;font-weight:500;color:var(--t)}
+
+/* NAV (identica a index.html) */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:26px var(--pad);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--gb)}
+nav.sc{padding:16px var(--pad)}
+.nav-logo{display:flex;align-items:center;font-family:var(--fh);font-size:16px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--n)}
+.nav-logo img{height:22px;width:auto}
+.nav-logo .txt span{color:var(--t)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g);position:relative;transition:color .3s}
+.nav-links a.active{color:var(--n);font-weight:500}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--t);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--td)}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;background:none;border:none;font-family:var(--fb);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--n);cursor:pointer}
+
+/* NAV dropdown — Servizi (3 pagine sotto un'unica voce, hover su desktop) */
+.nav-drop{position:relative}
+.nav-drop>a{cursor:default}
+.nav-drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:18px;opacity:0;visibility:hidden;transition:opacity .3s var(--ease);min-width:220px}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible}
+.nav-drop-menu ul{list-style:none;background:var(--w);border:1px solid var(--gb);box-shadow:0 18px 40px rgba(26,26,26,.12)}
+.nav-drop-menu a{display:block;padding:14px 20px;font-size:11.5px;letter-spacing:.08em;text-transform:none;color:var(--n);border-bottom:1px solid var(--gb);white-space:nowrap}
+.nav-drop-menu li:last-child a{border-bottom:none}
+.nav-drop-menu a:hover{background:var(--gl);color:var(--td)}
+.nav-drop-menu a::after{display:none}
+@media(max-width:820px){
+  .nav-drop-menu{position:static;transform:none;opacity:1;visibility:visible;padding-top:0;min-width:0;display:none}
+  .nav-drop.open-sub .nav-drop-menu{display:block}
+  .nav-drop-menu ul{background:none;border:none;box-shadow:none;text-align:center}
+  .nav-drop-menu a{border:none;padding:8px 0;font-size:15px}
+}
+
+/* PAGE HERO (bandiera di apertura per pagine interne) */
+.page-hero{padding:clamp(150px,20vh,220px) var(--pad) clamp(60px,8vh,90px)}
+.page-hero .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gm);margin-bottom:22px;display:flex;gap:8px;align-items:center}
+.page-hero .breadcrumb a{color:var(--gm);transition:color .3s}
+.page-hero .breadcrumb a:hover{color:var(--td)}
+.page-hero h1{font-family:var(--fh);font-weight:200;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.02em;margin-top:20px}
+.page-hero .lead{font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.75;color:var(--g);max-width:620px;margin-top:28px}
+
+/* CONTENT SECTION — pagine testuali (servizi, chi-siamo, case study) */
+.content-sec{padding:clamp(50px,7vh,90px) var(--pad)}
+.content-sec.dark{background:var(--n);color:var(--w)}
+.content-sec.grey{background:var(--gl)}
+.content-sec h2{font-family:var(--fh);font-weight:300;font-size:clamp(26px,3vw,38px);letter-spacing:-.01em;margin-bottom:22px}
+.content-sec p{font-size:clamp(15px,1.2vw,17px);font-weight:300;line-height:1.85;color:var(--g);max-width:720px}
+.content-sec.dark p{color:#cfcfcf}
+.content-sec p+p{margin-top:20px}
+.content-sec .content-inner{max-width:820px}
+
+/* CTA BAND — fondo pagina, link a /prezzi o /contatti */
+.cta-band{background:var(--n);color:var(--w);padding:clamp(60px,9vh,110px) var(--pad);display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.cta-band h2{font-family:var(--fh);font-weight:200;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.01em}
+.cta-band h2 em{font-style:normal;font-weight:500;color:var(--t)}
+.cta-btn{display:inline-flex;align-items:center;gap:14px;font-family:var(--fh);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--n);background:var(--t);padding:18px 36px;transition:background .4s var(--ease),gap .35s}
+.cta-btn span{transition:transform .35s var(--ease)}
+.cta-btn:hover{background:var(--tl);gap:20px}
+.cta-btn.outline{background:transparent;color:var(--w);border:1px solid rgba(255,255,255,.3)}
+.cta-btn.outline:hover{border-color:var(--t);background:rgba(129,199,189,.08)}
+
+/* PREZZI — card fasce */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--gb);border:1px solid var(--gb);margin-top:16px}
+.price-card{background:var(--w);padding:36px 30px}
+.price-card h3{font-family:var(--fh);font-weight:400;font-size:19px;margin-bottom:14px}
+.price-card .price-val{font-family:var(--fh);font-weight:300;font-size:clamp(26px,2.6vw,34px);color:var(--n);margin-bottom:10px}
+.price-card .price-val span{font-size:14px;color:var(--gm);font-family:var(--fb)}
+.price-card p{font-size:13.5px;font-weight:300;line-height:1.7;color:var(--gm)}
+.price-note{font-size:13px;font-weight:300;color:var(--gm);line-height:1.7;margin-top:20px;max-width:640px}
+.price-disclaimer{font-size:13.5px;font-weight:300;line-height:1.8;color:var(--g);max-width:720px;padding:20px 24px;background:var(--gl);border-left:2px solid var(--t);margin-bottom:40px}
+
+/* CASE STUDY INDEX — card lista */
+.cs-list{display:flex;flex-direction:column;gap:1px;background:var(--gb);border:1px solid var(--gb);margin-top:16px}
+.cs-card{background:var(--w);padding:34px 30px;display:flex;flex-direction:column;gap:10px;transition:background .35s var(--ease)}
+.cs-card:hover{background:var(--gl)}
+.cs-card .cs-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--td)}
+.cs-card h3{font-family:var(--fh);font-weight:400;font-size:22px;letter-spacing:-.01em}
+.cs-card p{font-size:14px;font-weight:300;color:var(--g);line-height:1.7;max-width:680px}
+.cs-card .cs-link{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--td);display:inline-flex;align-items:center;gap:8px;margin-top:6px}
+
+/* FOOTER (identico a index.html) */
+footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08)}
+.flogo{display:flex;align-items:center;gap:8px}
+.flogo img{height:20px}
+.flogo .txt{font-family:var(--fh);font-size:15px;letter-spacing:.16em;text-transform:uppercase}
+.flogo .txt span{color:var(--t)}
+.finfo,.fpiva{font-size:12px;line-height:1.7;color:var(--gm)}
+.fpiva{text-align:right}
+
+/* FORM — /contatti */
+.cform{max-width:560px}
+.fg{margin-bottom:26px}
+.fg label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gm);margin-bottom:10px}
+.fg input,.fg select,.fg textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--gb);color:var(--n);font-family:var(--fb);font-size:16px;font-weight:300;padding:10px 0;transition:border-color .4s}
+.fg select{cursor:pointer}
+.fg textarea{resize:vertical;min-height:90px}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--t)}
+.fg input::placeholder,.fg textarea::placeholder{color:#9a9a9a}
+.csubmit{display:inline-flex;align-items:center;gap:14px;font-family:var(--fh);font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--w);background:var(--n);border:none;padding:18px 36px;cursor:pointer;margin-top:10px;transition:background .4s var(--ease),gap .35s}
+.csubmit:hover{background:var(--td);gap:20px}
+.con-links{margin-top:8px;display:flex;flex-direction:column;gap:1px;background:var(--gb);border-top:1px solid var(--gb);border-bottom:1px solid var(--gb)}
+.con-link{background:var(--w);padding:20px 4px;display:flex;flex-direction:column;gap:5px;transition:padding-left .4s var(--ease)}
+a.con-link:hover{padding-left:14px}
+.con-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--td)}
+.con-val{font-family:var(--fh);font-weight:300;font-size:18px}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--w);flex-direction:column;align-items:center;justify-content:center;gap:34px;z-index:99}
+  .nav-links.open a{font-size:18px}
+  .nav-toggle{display:block;z-index:101}
+  footer{flex-direction:column;align-items:flex-start}
+  .fpiva{text-align:left}
+  .cta-band{align-items:flex-start}
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Production32 — Shooting Producer, Casting & Events | Luigi Losco, Milano</title>
-<meta name="description" content="Production32 è il progetto di Luigi Losco: shooting production, casting direction ed event management per brand di moda e lusso. Un solo referente, Milano.">
+<meta name="description" content="Production32 è il network di produzione fotografica, video ed eventi guidato da Luigi Losco: shooting production, casting direction ed event management per brand di moda e lusso. Milano.">
 <meta name="author" content="Luigi Losco">
 <link rel="canonical" href="https://production32.it/">
 
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://production32.it/">
 <meta property="og:title" content="Production32 — Shooting Producer, Casting & Events">
-<meta property="og:description" content="Shooting production, casting direction ed event management per brand di moda e lusso. Un solo referente, Milano.">
+<meta property="og:description" content="Shooting production, casting direction ed event management per brand di moda e lusso. Un team dedicato per ogni progetto, guidato da Luigi Losco. Milano.">
 <meta property="og:image" content="https://production32.it/assets/og-image.jpg">
 <meta property="og:locale" content="it_IT">
 
@@ -88,12 +88,29 @@ nav.sc{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);padding:16px 
 .nav-logo{display:flex;align-items:center;font-family:var(--fh);font-size:16px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--n)}
 .nav-logo img{height:22px;width:auto}
 .nav-logo .txt span{color:var(--t)}
-.nav-links{display:flex;gap:38px;list-style:none}
+.nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--g);position:relative;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--t);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--td)}
 .nav-links a:hover::after{width:100%}
 .nav-toggle{display:none;background:none;border:none;font-family:var(--fb);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--n);cursor:pointer}
+
+/* NAV dropdown — Servizi */
+.nav-drop{position:relative}
+.nav-drop>a{cursor:default}
+.nav-drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:18px;opacity:0;visibility:hidden;transition:opacity .3s var(--ease);min-width:220px}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible}
+.nav-drop-menu ul{list-style:none;background:var(--w);border:1px solid var(--gb);box-shadow:0 18px 40px rgba(26,26,26,.12)}
+.nav-drop-menu a{display:block;padding:14px 20px;font-size:11.5px;letter-spacing:.08em;text-transform:none;color:var(--n);border-bottom:1px solid var(--gb);white-space:nowrap}
+.nav-drop-menu li:last-child a{border-bottom:none}
+.nav-drop-menu a:hover{background:var(--gl);color:var(--td)}
+.nav-drop-menu a::after{display:none}
+@media(max-width:820px){
+  .nav-drop-menu{position:static;transform:none;opacity:1;visibility:visible;padding-top:0;min-width:0;display:none}
+  .nav-drop.open-sub .nav-drop-menu{display:block}
+  .nav-drop-menu ul{background:none;border:none;box-shadow:none;text-align:center}
+  .nav-drop-menu a{border:none;padding:8px 0;font-size:15px}
+}
 
 /* HERO */
 #hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr}
@@ -279,12 +296,21 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
     <span class="txt" style="display:none">Production<span>32</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#servizi">Servizi</a></li>
+    <li class="nav-drop">
+      <a href="#servizi" onclick="return false">Servizi</a>
+      <div class="nav-drop-menu"><ul>
+        <li><a href="/servizi/shooting-production/">Shooting Production</a></li>
+        <li><a href="/servizi/casting/">Casting</a></li>
+        <li><a href="/servizi/event-management/">Event Management</a></li>
+      </ul></div>
+    </li>
     <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="/prezzi/">Prezzi</a></li>
+    <li><a href="/case-study/">Case Study</a></li>
+    <li><a href="/chi-siamo/">Chi Siamo</a></li>
     <li><a href="#clienti">Clienti</a></li>
     <li><a href="#pubblicazioni">Pubblicazioni</a></li>
-    <li><a href="#contatti">Contatti</a></li>
+    <li><a href="/contatti/">Contatti</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">Menu</button>
 </nav>
@@ -295,8 +321,8 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
     <div class="hero-idx">01 — Production32</div>
     <div class="eyebrow">Shooting · Casting · Events — Milano</div>
     <h1 class="hero-title">Produzioni<br>che reggono<br><em>lo sguardo ravvicinato.</em></h1>
-    <p class="hero-sub">Shooting production, casting direction ed event management per brand di moda e lusso. Un solo referente, dalla concept alla consegna.</p>
-    <a href="#contatti" class="hero-cta">Inizia un progetto <span>&rarr;</span></a>
+    <p class="hero-sub">Shooting production, casting direction ed event management per brand di moda e lusso. Un team dedicato per ogni progetto, dalla concept alla consegna.</p>
+    <a href="/contatti/" class="hero-cta">Inizia un progetto <span>&rarr;</span></a>
   </div>
   <div class="hero-r">
     <img src="assets/hero.webp" alt="Set fotografico Production32" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -311,21 +337,21 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
   <div class="eyebrow light rv">Cosa faccio</div>
   <h2 class="h-sec rv d1">Tre discipline,<br><em>un unico metodo.</em></h2>
   <div class="srv-grid">
-    <div class="srv-card rv">
+    <a href="/servizi/shooting-production/" class="srv-card rv">
       <div class="srv-n">01</div>
       <h3 class="srv-t">Shooting Production</h3>
       <p class="srv-d">Coordinamento completo di campagne foto e video per moda e lusso. Scouting location, budget, permessi, gestione del set: ogni fase sotto un solo controllo.</p>
-    </div>
-    <div class="srv-card rv d1">
+    </a>
+    <a href="/servizi/casting/" class="srv-card rv d1">
       <div class="srv-n">02</div>
       <h3 class="srv-t">Casting Direction</h3>
       <p class="srv-d">Selezione di talent, modelli e figure creative in linea con l'identità del brand. Occhio editoriale e una rete costruita in anni di industry.</p>
-    </div>
-    <div class="srv-card rv d2">
+    </a>
+    <a href="/servizi/event-management/" class="srv-card rv d2">
       <div class="srv-n">03</div>
       <h3 class="srv-t">Event Management</h3>
       <p class="srv-d">Press day, showroom, attivazioni e eventi istituzionali. Dalla concept alla logistica, con la cura che i contesti luxury richiedono.</p>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -451,27 +477,6 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-wrap">
-    <div>
-      <div class="eyebrow light rv">Chi sono</div>
-      <h2 class="h-sec rv d1">Un solo referente.<br><em>Nessun filtro.</em></h2>
-      <p class="about-body rv d2">Sono <strong>Luigi Losco</strong>, Shooting Producer e Casting Director con base a Milano. Production32 &egrave; il mio progetto: una struttura snella che lavora direttamente con i brand, senza intermediari, con la velocit&agrave; e l'attenzione che le produzioni luxury richiedono.</p>
-      <p class="about-body rv d3">Anni nell'industria della moda e del lusso, da <strong>Krizia</strong> alla consulenza internazionale, mi hanno dato un metodo fondato su tre principi: chiarezza di budget, visione estetica netta, esecuzione irreprensibile.</p>
-      <div class="about-stats rv d4">
-        <div><div class="stat-n">10<span>+</span></div><div class="stat-l">Anni di industry</div></div>
-        <div><div class="stat-n">50<span>+</span></div><div class="stat-l">Progetti prodotti</div></div>
-        <div><div class="stat-n">20<span>+</span></div><div class="stat-l">Brand serviti</div></div>
-      </div>
-    </div>
-    <div class="about-img rv d2">
-      <img src="assets/about.webp" alt="Backstage produzione La Martina, attrezzatura da polo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph" style="display:none">Backstage</div>
-    </div>
-  </div>
-</section>
-
 <!-- CLIENTI -->
 <section id="clienti">
   <div class="eyebrow rv">Clienti</div>
@@ -517,29 +522,12 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
   </div>
 </section>
 
-<!-- CONTATTI -->
-<section id="contatti">
-  <div class="con-l">
-    <div class="eyebrow light">Contatti</div>
-    <h2 class="h-sec">Parliamo<br><em>del progetto.</em></h2>
-    <p class="con-desc">Ogni produzione inizia da una conversazione diretta. Nessun account manager, nessun filtro. Scrivi a Luigi.</p>
-    <div class="con-links">
-      <a href="mailto:losco@production32.it" class="con-link"><span class="con-lbl">Email</span><span class="con-val">losco@production32.it</span></a>
-      <a href="https://www.linkedin.com/in/luigi-losco-production32" target="_blank" rel="noopener" class="con-link"><span class="con-lbl">LinkedIn</span><span class="con-val">Luigi Losco</span></a>
-      <a href="https://instagram.com/losco.production32" target="_blank" rel="noopener" class="con-link"><span class="con-lbl">Instagram</span><span class="con-val">@losco.production32</span></a>
-      <div class="con-link"><span class="con-lbl">Base</span><span class="con-val">Milano, Italia</span></div>
-    </div>
-  </div>
-  <div class="con-r">
-    <form class="cform" name="contatti" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?inviato=1">
-      <input type="hidden" name="form-name" value="contatti">
-      <p hidden><label>Non compilare: <input name="bot-field"></label></p>
-      <div class="fg"><label for="nome">Nome e Brand</label><input type="text" id="nome" name="nome" placeholder="Giulia Ferrari · Brand XY" required></div>
-      <div class="fg"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="giulia@brand.com" required></div>
-      <div class="fg"><label for="msg">Il progetto</label><textarea id="msg" name="messaggio" placeholder="Tipo di produzione, timing, eventuale budget orientativo..."></textarea></div>
-      <button type="submit" class="csubmit">Invia messaggio <span>&rarr;</span></button>
-    </form>
-  </div>
+<!-- CONTATTI (CTA breve, form completo su /contatti/) -->
+<section id="contatti" style="background:var(--n);color:var(--w);padding:clamp(90px,12vh,150px) var(--pad);display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+  <div class="eyebrow light rv">Contatti</div>
+  <h2 class="h-sec rv d1">Parliamo<br><em>del progetto.</em></h2>
+  <p class="rv d2" style="font-size:15px;font-weight:300;line-height:1.8;color:#bdbdbd;max-width:440px">Ogni produzione inizia da una conversazione diretta. Nessun account manager, nessun filtro.</p>
+  <a href="/contatti/" class="hero-cta rv d3" style="color:var(--w);border-color:rgba(255,255,255,.4)">Scrivi a Luigi <span>&rarr;</span></a>
 </section>
 
 <!-- FOOTER -->
@@ -570,6 +558,16 @@ addEventListener('scroll',()=>navEl.classList.toggle('sc',scrollY>50),{passive:t
 const navLinks=document.getElementById('navLinks'),navToggle=document.getElementById('navToggle');
 navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.textContent=o?'Chiudi':'Menu'});
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.textContent='Menu'}));
+
+// Dropdown Servizi — toggle su mobile
+document.querySelectorAll('.nav-drop > a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(matchMedia('(max-width:820px)').matches){
+      e.preventDefault();
+      a.parentElement.classList.toggle('open-sub');
+    }
+  });
+});
 
 // Reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.14});
@@ -616,10 +614,6 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')document.getElementById('lbPrev').click();
 });
 
-// Conferma invio Netlify (se redirect con ?inviato=1)
-if(new URLSearchParams(location.search).get('inviato')){
-  const b=document.querySelector('.csubmit');if(b){b.textContent='Inviato ✓';b.style.background='var(--tl)'}
-}
 </script>
 </body>
 </html>

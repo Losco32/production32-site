@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contatti — Production32 | Luigi Losco, Milano</title>
+<meta name="description" content="Richiedi un preventivo o scrivi a Luigi Losco per Shooting Production, Event Management o Casting. Milano e hinterland.">
+<meta name="author" content="Luigi Losco">
+<link rel="canonical" href="https://production32.it/contatti/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://production32.it/contatti/">
+<meta property="og:title" content="Contatti — Production32">
+<meta property="og:description" content="Richiedi un preventivo o scrivi a Luigi Losco. Milano e hinterland.">
+<meta property="og:image" content="https://production32.it/assets/og-image.jpg">
+<meta property="og:locale" content="it_IT">
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<style>@media(max-width:820px){.content-sec[style*="grid-template-columns"]{display:flex!important;flex-direction:column}}</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/" class="nav-logo" aria-label="Production32 home">
+    <img src="/assets/logo.svg" alt="Production32" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+    <span class="txt" style="display:none">Production<span>32</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li class="nav-drop">
+      <a href="#" onclick="return false">Servizi</a>
+      <div class="nav-drop-menu"><ul>
+        <li><a href="/servizi/shooting-production/">Shooting Production</a></li>
+        <li><a href="/servizi/casting/">Casting</a></li>
+        <li><a href="/servizi/event-management/">Event Management</a></li>
+      </ul></div>
+    </li>
+    <li><a href="/#portfolio">Portfolio</a></li>
+    <li><a href="/prezzi/">Prezzi</a></li>
+    <li><a href="/case-study/">Case Study</a></li>
+    <li><a href="/chi-siamo/">Chi Siamo</a></li>
+    <li><a href="/contatti/" class="active">Contatti</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">Menu</button>
+</nav>
+
+<section class="page-hero" style="padding-bottom:20px">
+  <div class="breadcrumb"><a href="/">Home</a> / <span>Contatti</span></div>
+  <div class="eyebrow rv">Contatti</div>
+  <h1 class="rv d1">Parliamo del progetto.</h1>
+  <p class="lead rv d2">Per una richiesta di preventivo, una collaborazione o una domanda su un progetto in corso.</p>
+</section>
+
+<section class="content-sec" style="padding-top:20px;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:start">
+  <div class="rv">
+    <div style="font-family:var(--fh);font-weight:400;font-size:20px;margin-bottom:4px">Luigi Losco</div>
+    <div style="font-size:13px;color:var(--gm);margin-bottom:24px">Shooting Producer, Casting Director ed Event Manager</div>
+    <div class="con-links">
+      <a href="mailto:losco@production32.it" class="con-link"><span class="con-lbl">Email</span><span class="con-val">losco@production32.it</span></a>
+      <a href="tel:+393319123544" class="con-link"><span class="con-lbl">Telefono</span><span class="con-val">+39 331 9123544</span></a>
+      <a href="https://production32.it" class="con-link"><span class="con-lbl">Sito</span><span class="con-val">production32.it</span></a>
+      <div class="con-link"><span class="con-lbl">Base</span><span class="con-val">Milano e hinterland</span></div>
+    </div>
+  </div>
+  <div class="rv d1">
+    <form class="cform" name="contatti-pagina" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contatti/?inviato=1">
+      <input type="hidden" name="form-name" value="contatti-pagina">
+      <p hidden><label>Non compilare: <input name="bot-field"></label></p>
+      <div class="fg"><label for="nome">Nome e Brand</label><input type="text" id="nome" name="nome" placeholder="Giulia Ferrari · Brand XY" required></div>
+      <div class="fg"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="giulia@brand.com" required></div>
+      <div class="fg">
+        <label for="tipo">Tipo di progetto</label>
+        <select id="tipo" name="tipo_progetto" required>
+          <option value="" disabled selected>Seleziona...</option>
+          <option value="Shooting Production">Shooting Production</option>
+          <option value="Event Management">Event Management</option>
+          <option value="Casting">Casting</option>
+        </select>
+      </div>
+      <div class="fg"><label for="msg">Messaggio</label><textarea id="msg" name="messaggio" placeholder="Timing, budget orientativo, dettagli del progetto..."></textarea></div>
+      <button type="submit" class="csubmit">Invia messaggio <span>&rarr;</span></button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <a href="/" class="flogo" aria-label="Production32">
+    <img src="/assets/logo-white.svg" alt="Production32" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+    <span class="txt" style="display:none">Production<span>32</span></span>
+  </a>
+  <div class="finfo">&copy; 2026 Production32 · Luigi Losco<br>Milano, Italia</div>
+  <div class="fpiva">P.IVA 10282571214<br>production32.it</div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script>
+if(new URLSearchParams(location.search).get('inviato')){
+  const b=document.querySelector('.csubmit');if(b){b.textContent='Inviato ✓';b.style.background='var(--t)';b.style.color='var(--n)'}
+}
+</script>
+</body>
+</html>

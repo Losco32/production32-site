@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://production32.it/sitemap.xml

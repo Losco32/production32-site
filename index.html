@@ -595,7 +595,7 @@ lbImg.addEventListener('error',()=>{
   lbIdx=lbIdx%lbList.length;
   showLB();
 },{passive:true});
-function openLB(imgs,cap){lbList=[...imgs];lbIdx=0;lbCap.textContent=cap;showLB();lb.classList.add('open');document.body.style.overflow='hidden'}
+function openLB(imgs,cap){lbList=[...imgs];lbIdx=0;lbCap.textContent=cap;lbImg.alt=cap;showLB();lb.classList.add('open');document.body.style.overflow='hidden'}
 function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
 document.getElementById('lbClose').onclick=closeLB;
 document.getElementById('lbPrev').onclick=()=>{lbIdx=(lbIdx-1+lbList.length)%lbList.length;showLB()};

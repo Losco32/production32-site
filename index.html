@@ -35,23 +35,56 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Production32",
-  "description": "Shooting production, casting direction ed event management per brand di moda e lusso.",
-  "url": "https://production32.it",
-  "email": "losco@production32.it",
-  "areaServed": "IT",
-  "founder": {
-    "@type": "Person",
-    "name": "Luigi Losco",
-    "jobTitle": "Shooting Producer & Casting Director",
-    "sameAs": "https://www.linkedin.com/in/luigi-losco"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Milano",
-    "addressCountry": "IT"
-  }
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://production32.it/#organization",
+      "name": "Production32",
+      "description": "Shooting production, casting direction ed event management per brand di moda e lusso.",
+      "url": "https://production32.it",
+      "email": "losco@production32.it",
+      "areaServed": "IT",
+      "founder": { "@id": "https://production32.it/#luigi-losco" },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Milano",
+        "addressCountry": "IT"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/production32/",
+        "https://www.instagram.com/losco.production32/",
+        "https://payhip.com/b/OfiBp"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://production32.it/#luigi-losco",
+      "name": "Luigi Losco",
+      "givenName": "Luigi",
+      "familyName": "Losco",
+      "jobTitle": "Shooting Producer, Casting Director, Event Manager",
+      "description": "Producer di shooting fotografici e video, casting director ed event manager per brand di moda e lusso. Fondatore di Production32, Milano.",
+      "worksFor": { "@id": "https://production32.it/#organization" },
+      "knowsAbout": [
+        "shooting production",
+        "casting direction",
+        "event management",
+        "fashion production",
+        "budget di produzione fotografica"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ISNI",
+        "value": "0000000530584710",
+        "url": "https://isni.org/isni/0000000530584710"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/luigi-losco-production32/",
+        "https://www.instagram.com/losco32/",
+        "https://www.mondadoristore.it/luigi-losco/c/05909334"
+      ]
+    }
+  ]
 }
 </script>
 

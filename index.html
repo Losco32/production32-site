@@ -179,6 +179,15 @@ nav.sc{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);padding:16px 
 .srv-n{font-family:var(--fh);font-size:13px;letter-spacing:.2em;color:var(--t);margin-bottom:28px}
 .srv-t{font-family:var(--fh);font-weight:300;font-size:26px;letter-spacing:-.01em;margin-bottom:20px}
 .srv-d{font-size:14.5px;font-weight:300;line-height:1.75;color:#bdbdbd}
+.srv-p32{display:flex;align-items:center;gap:28px;margin-top:1px;padding:30px 40px;border-top:1px solid rgba(255,255,255,.12);transition:background .5s var(--ease),gap .35s var(--ease)}
+.srv-p32:hover{background:rgba(129,199,189,.06);gap:36px}
+.srv-p32-n{font-family:var(--fh);font-weight:300;font-size:20px;color:var(--t);flex:none}
+.srv-p32-body{flex:1;min-width:0}
+.srv-p32-t{font-family:var(--fh);font-weight:300;font-size:18px;letter-spacing:-.01em;margin-bottom:4px}
+.srv-p32-d{font-size:13px;font-weight:300;line-height:1.6;color:#bdbdbd;max-width:560px}
+.srv-p32-arrow{font-family:var(--fh);color:var(--t);font-size:18px;flex:none;transition:transform .35s var(--ease)}
+.srv-p32:hover .srv-p32-arrow{transform:translateX(6px)}
+@media(max-width:820px){.srv-p32{flex-wrap:wrap;padding:26px var(--pad)}}
 
 /* PORTFOLIO (light) */
 #portfolio{padding:clamp(90px,12vh,160px) var(--pad) clamp(70px,9vh,120px)}
@@ -375,7 +384,7 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
 <!-- SERVIZI -->
 <section id="servizi">
   <div class="eyebrow light rv">Cosa faccio</div>
-  <h2 class="h-sec rv d1">Tre discipline,<br><em>un unico metodo.</em></h2>
+  <h2 class="h-sec rv d1">Tre discipline produttive,<br><em>più un metodo commerciale.</em></h2>
   <div class="srv-grid">
     <a href="/servizi/shooting-production/" class="srv-card rv">
       <div class="srv-n">01</div>
@@ -393,6 +402,14 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
       <p class="srv-d">Press day, showroom, attivazioni e eventi istituzionali. Dalla concept alla logistica, con la cura che i contesti luxury richiedono.</p>
     </a>
   </div>
+  <a href="/p32/" class="srv-p32 rv d3">
+    <div class="srv-p32-n">+</div>
+    <div class="srv-p32-body">
+      <h3 class="srv-p32-t">P32 — Consulenza Commerciale</h3>
+      <p class="srv-p32-d">L'estensione sul lato commerciale: sales enablement, BD e audit digitale, con lo stesso metodo delle produzioni.</p>
+    </div>
+    <span class="srv-p32-arrow">&rarr;</span>
+  </a>
 </section>
 
 <!-- PORTFOLIO -->

@@ -160,6 +160,7 @@ a.con-link:hover{padding-left:14px}
   .nav-links.open{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--w);flex-direction:column;align-items:center;justify-content:center;gap:34px;z-index:99}
   .nav-links.open a{font-size:18px}
   .nav-toggle{display:block;z-index:101}
+  nav.menu-open{backdrop-filter:none;background:var(--w);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s}
   footer{flex-direction:column;align-items:flex-start}
   .fpiva{text-align:left}
   .cta-band{align-items:flex-start}

@@ -319,6 +319,7 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
   .nav-links.open{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--w);flex-direction:column;align-items:center;justify-content:center;gap:34px;z-index:99}
   .nav-links.open a{font-size:18px}
   .nav-toggle{display:block;z-index:101}
+  nav.menu-open{backdrop-filter:none;background:var(--w);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s}
   footer{flex-direction:column;align-items:flex-start}
   .fpiva{text-align:left}
 }
@@ -596,8 +597,8 @@ addEventListener('scroll',()=>navEl.classList.toggle('sc',scrollY>50),{passive:t
 
 // Mobile menu
 const navLinks=document.getElementById('navLinks'),navToggle=document.getElementById('navToggle');
-navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.textContent=o?'Chiudi':'Menu'});
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.textContent='Menu'}));
+navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.textContent=o?'Chiudi':'Menu';navEl.classList.toggle('menu-open',o)});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.textContent='Menu';navEl.classList.remove('menu-open')}));
 
 // Dropdown Servizi — toggle su mobile
 document.querySelectorAll('.nav-drop > a').forEach(a=>{

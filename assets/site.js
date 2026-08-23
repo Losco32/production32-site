@@ -5,8 +5,8 @@ if(navEl){addEventListener('scroll',()=>navEl.classList.toggle('sc',scrollY>50),
 // Mobile menu
 const navLinks=document.getElementById('navLinks'),navToggle=document.getElementById('navToggle');
 if(navToggle&&navLinks){
-  navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.textContent=o?'Chiudi':'Menu'});
-  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.textContent='Menu'}));
+  navToggle.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');navToggle.textContent=o?'Chiudi':'Menu';navEl&&navEl.classList.toggle('menu-open',o)});
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');navToggle.textContent='Menu';navEl&&navEl.classList.remove('menu-open')}));
 }
 
 // Dropdown Servizi — toggle su mobile, hover su desktop (gestito da CSS)

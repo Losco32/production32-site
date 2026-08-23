@@ -332,6 +332,10 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
   footer{flex-direction:column;align-items:flex-start}
   .fpiva{text-align:left}
 }
+
+/* PAGE TRANSITION — fade breve in uscita verso link interni (vedi script sotto) */
+body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
+@media(prefers-reduced-motion:reduce){body.pg-out{transition:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -630,6 +634,21 @@ document.querySelectorAll('.nav-drop > a').forEach(a=>{
 // Reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.14});
 document.querySelectorAll('.rv').forEach(r=>io.observe(r));
+
+// Page transition — fade breve in uscita verso link interni
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.addEventListener('click',e=>{
+    if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+    const a=e.target.closest('a[href]');
+    if(!a||(a.target&&a.target!=='_self')||a.hasAttribute('download'))return;
+    let url;try{url=new URL(a.href,location.href)}catch(err){return}
+    if(url.origin!==location.origin)return;
+    if(url.pathname===location.pathname&&url.search===location.search)return;
+    e.preventDefault();
+    document.body.classList.add('pg-out');
+    setTimeout(()=>{location.href=a.href},150);
+  });
+}
 
 // Filtri portfolio
 document.querySelectorAll('.pf-btn').forEach(btn=>{

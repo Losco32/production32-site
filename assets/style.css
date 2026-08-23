@@ -70,6 +70,7 @@ nav.sc{padding:16px var(--pad)}
 .page-hero .breadcrumb a{color:var(--gm);transition:color .3s}
 .page-hero .breadcrumb a:hover{color:var(--td)}
 .page-hero h1{font-family:var(--fh);font-weight:200;font-size:clamp(38px,5.4vw,72px);line-height:1.04;letter-spacing:-.02em;margin-top:20px}
+.page-hero h1 em,.page-hero .lead em{font-style:normal;font-weight:500;color:var(--t)}
 .page-hero .lead{font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.75;color:var(--g);max-width:620px;margin-top:28px}
 
 /* CONTENT SECTION — pagine testuali (servizi, chi-siamo, case study) */
@@ -153,6 +154,10 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
 a.con-link:hover{padding-left:14px}
 .con-lbl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--td)}
 .con-val{font-family:var(--fh);font-weight:300;font-size:18px}
+
+/* PAGE TRANSITION — fade breve in uscita verso link interni (vedi site.js) */
+body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
+@media(prefers-reduced-motion:reduce){body.pg-out{transition:none;opacity:1}}
 
 /* RESPONSIVE */
 @media(max-width:820px){

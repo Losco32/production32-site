@@ -47,6 +47,7 @@
     <li><a href="/chi-siamo/">Chi Siamo</a></li>
     <li><a href="/faq/">FAQ</a></li>
     <li><a href="/contatti/" class="active">Contatti</a></li>
+    <li><a href="/privacy/">Privacy</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" aria-label="Menu">Menu</button>
 </nav>
@@ -86,6 +87,12 @@
         </select>
       </div>
       <div class="fg"><label for="msg">Messaggio</label><textarea id="msg" name="messaggio" placeholder="Timing, budget orientativo, dettagli del progetto..."></textarea></div>
+      <div class="fg">
+        <label for="consenso_privacy" style="display:flex;align-items:flex-start;gap:10px;font-size:13px;font-weight:300;letter-spacing:normal;text-transform:none;color:var(--g);cursor:pointer">
+          <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required style="margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--t)">
+          <span>Ho letto l'<a href="/privacy/" target="_blank" rel="noopener" style="color:var(--td);border-bottom:1px solid var(--t)">Informativa Privacy</a> e acconsento al trattamento dei miei dati per la gestione della richiesta.</span>
+        </label>
+      </div>
       <button type="submit" class="csubmit">Invia messaggio <span>&rarr;</span></button>
     </form>
   </div>
@@ -97,7 +104,7 @@
     <span class="txt" style="display:none">Production<span>32</span></span>
   </a>
   <div class="finfo">&copy; 2026 Production32 · Luigi Losco<br>Milano, Italia</div>
-  <div class="fpiva">P.IVA 10282571214<br>production32.it</div>
+  <div class="fpiva">P.IVA 10282571214<br>production32.it<br><a href="/privacy/" style="color:inherit">Privacy</a></div>
 </footer>
 
 <script src="/assets/site.js"></script>

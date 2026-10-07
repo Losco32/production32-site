@@ -158,9 +158,11 @@ nav.sc .nav-logo img{height:24px}
 .hero-title{font-family:var(--fh);font-weight:200;font-size:clamp(46px,6.4vw,104px);line-height:.98;letter-spacing:-.03em;margin:28px 0 36px}
 .hero-title em{font-style:normal;font-weight:500;color:#4d8d82;display:block}
 .hero-sub{font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.7;color:var(--g);max-width:430px;margin-bottom:48px}
-.hero-cta{display:inline-flex;align-items:center;gap:14px;font-family:var(--fh);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--n);border-bottom:1px solid var(--n);padding-bottom:9px;width:max-content;transition:gap .35s var(--ease),color .35s,border-color .35s}
+.hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:14px;font-family:var(--fh);font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--n);background:var(--t);min-height:52px;padding:0 34px;width:max-content;max-width:100%;transition:gap .35s var(--ease),background .35s var(--ease)}
 .hero-cta span{transition:transform .35s var(--ease)}
-.hero-cta:hover{color:var(--td);border-color:var(--t)}
+.hero-cta:hover{background:var(--tl)}
+.hero-cta:focus-visible{outline:2px solid var(--n);outline-offset:3px}
+#contatti .hero-cta:focus-visible{outline-color:var(--w)}
 .hero-cta:hover span{transform:translateX(6px)}
 .hero-r{position:relative;overflow:hidden;background:var(--nn)}
 .hero-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
@@ -595,7 +597,7 @@ body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
   <div class="eyebrow light rv">Contatti</div>
   <h2 class="h-sec rv d1">Parliamo<br><em>del progetto.</em></h2>
   <p class="rv d2" style="font-size:15px;font-weight:300;line-height:1.8;color:#bdbdbd;max-width:440px">Ogni produzione inizia da una conversazione diretta. Nessun account manager, nessun filtro.</p>
-  <a href="/contatti/" class="hero-cta rv d3" style="color:var(--w);border-color:rgba(255,255,255,.4)">Scrivi a Luigi <span>&rarr;</span></a>
+  <a href="/contatti/" class="hero-cta rv d3">Scrivi a Luigi <span>&rarr;</span></a>
 </section>
 </main>
 

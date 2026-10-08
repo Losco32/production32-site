@@ -158,9 +158,11 @@ nav.sc .nav-logo img{height:24px}
 .hero-title{font-family:var(--fh);font-weight:200;font-size:clamp(46px,6.4vw,104px);line-height:.98;letter-spacing:-.03em;margin:28px 0 36px}
 .hero-title em{font-style:normal;font-weight:500;color:#4d8d82;display:block}
 .hero-sub{font-size:clamp(15px,1.3vw,18px);font-weight:300;line-height:1.7;color:var(--g);max-width:430px;margin-bottom:48px}
-.hero-cta{display:inline-flex;align-items:center;gap:14px;font-family:var(--fh);font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--n);border-bottom:1px solid var(--n);padding-bottom:9px;width:max-content;transition:gap .35s var(--ease),color .35s,border-color .35s}
+.hero-cta{display:inline-flex;align-items:center;justify-content:center;gap:14px;font-family:var(--fh);font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--n);background:var(--t);min-height:52px;padding:0 34px;width:max-content;max-width:100%;transition:gap .35s var(--ease),background .35s var(--ease)}
 .hero-cta span{transition:transform .35s var(--ease)}
-.hero-cta:hover{color:var(--td);border-color:var(--t)}
+.hero-cta:hover{background:var(--tl)}
+.hero-cta:focus-visible{outline:2px solid var(--n);outline-offset:3px}
+#contatti .hero-cta:focus-visible{outline-color:var(--w)}
 .hero-cta:hover span{transform:translateX(6px)}
 .hero-r{position:relative;overflow:hidden;background:var(--nn)}
 .hero-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
@@ -204,7 +206,7 @@ nav.sc .nav-logo img{height:24px}
 .port-item.tall{aspect-ratio:3/5}
 .port-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),opacity .6s}
 .port-item:hover img{transform:scale(1.05)}
-.port-ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,rgba(16,16,16,.2),rgba(16,16,16,.85)),radial-gradient(circle at 70% 25%,rgba(129,199,189,.16),transparent 55%);color:var(--w)}
+.port-ph{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(0deg,rgba(16,16,16,.72) 0,rgba(16,16,16,.45) 24%,transparent 48%);color:var(--w);text-shadow:0 1px 8px rgba(16,16,16,.55)}
 .port-ph .pb{font-family:var(--fh);font-weight:300;font-size:22px}
 .port-ph .pc{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--tl);margin-top:6px}
 .port-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(180deg,transparent 40%,rgba(16,16,16,.82));opacity:0;transition:opacity .5s var(--ease);color:var(--w);z-index:2;pointer-events:none}
@@ -314,14 +316,20 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
 }
 @media(max-width:820px){
   #hero{grid-template-columns:1fr}
-  .hero-r{min-height:48vh;order:-1}
-  .hero-l{padding-top:120px}
+  #hero{min-height:0}
+  .hero-r{height:34vh;max-height:300px;min-height:220px;order:-1}
+  .hero-r img{object-position:center 0}
+  .hero-l{padding:32px var(--pad) 48px;justify-content:flex-start}
+  .hero-title{font-size:clamp(38px,11vw,46px);margin:20px 0 20px}
+  .hero-sub{margin-bottom:28px}
   .hero-idx{display:none}
   .scroll-ind{display:none}
   .port-hdr{grid-template-columns:1fr}
   .port-intro{justify-self:start}
   .port-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .port-item,.port-item.wide,.port-item.tall{grid-column:span 1;aspect-ratio:3/4}
+  .port-ph{padding:16px;background:linear-gradient(0deg,rgba(16,16,16,.78) 0,rgba(16,16,16,.55) 30%,transparent 62%)}
+  .port-ph .pb{font-size:17px;line-height:1.2}
   .about-wrap{grid-template-columns:1fr;gap:48px}
   .about-img{order:-1;max-width:380px}
   #contatti{grid-template-columns:1fr}
@@ -376,7 +384,7 @@ body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
     <div class="hero-idx">01 — Production32</div>
     <div class="eyebrow">Shooting · Casting · Events — Milano</div>
     <h1 class="hero-title">Produzioni<br>che reggono<br><em>lo sguardo ravvicinato.</em></h1>
-    <p class="hero-sub">Shooting production, casting direction ed event management per brand di moda e lusso. Un team dedicato per ogni progetto, dalla concept alla consegna.</p>
+    <p class="hero-sub">Shooting production, casting direction ed event management per brand di moda e lusso. Un team dedicato per ogni progetto, dal concept alla consegna.</p>
     <a href="/contatti/" class="hero-cta">Inizia un progetto <span>&rarr;</span></a>
   </div>
   <div class="hero-r">
@@ -394,17 +402,17 @@ body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
     <a href="/servizi/shooting-production/" class="srv-card rv">
       <div class="srv-n">01</div>
       <h3 class="srv-t">Shooting Production</h3>
-      <p class="srv-d">Coordinamento completo di campagne foto e video per moda e lusso. Scouting location, budget, permessi, gestione del set: ogni fase sotto un solo controllo.</p>
+      <p class="srv-d">Coordinamento completo di campagne foto e video per moda e lusso. Sopralluogo e prenotazione location, budget, permessi, gestione del set. Per un brand fashion internazionale ho consegnato 391 scatti prodotto per l'archivio interno nella prima sessione e il lookbook per lo showroom la settimana dopo, senza sovrapposizioni.</p>
     </a>
     <a href="/servizi/casting/" class="srv-card rv d1">
       <div class="srv-n">02</div>
       <h3 class="srv-t">Casting Direction</h3>
-      <p class="srv-d">Selezione di talent, modelli e figure creative in linea con l'identità del brand. Occhio editoriale e una rete costruita in anni di industry.</p>
+      <p class="srv-d">Casting per shooting e produzioni video, tramite una rete di agenzie modelle per profili donna, uomo, bambino ed ecommerce. A pochi giorni da uno shooting ecommerce un modello si è reso indisponibile: ho riaperto la selezione e il sostituto è stato confermato senza spostare la data.</p>
     </a>
     <a href="/servizi/event-management/" class="srv-card rv d2">
       <div class="srv-n">03</div>
       <h3 class="srv-t">Event Management</h3>
-      <p class="srv-d">Press day, showroom, attivazioni e eventi istituzionali. Dalla concept alla logistica, con la cura che i contesti luxury richiedono.</p>
+      <p class="srv-d">Eventi corporate e di brand: presentazioni prodotto, showroom, attivazioni, eventi stampa. Fornitori, budget e contratti passano da me. Il giorno dell'evento supervisiono io, dall'apertura al disallestimento.</p>
     </a>
   </div>
   <a href="/p32/" class="srv-p32 rv d3">
@@ -589,7 +597,7 @@ body.pg-out{opacity:0;transition:opacity .15s var(--ease)}
   <div class="eyebrow light rv">Contatti</div>
   <h2 class="h-sec rv d1">Parliamo<br><em>del progetto.</em></h2>
   <p class="rv d2" style="font-size:15px;font-weight:300;line-height:1.8;color:#bdbdbd;max-width:440px">Ogni produzione inizia da una conversazione diretta. Nessun account manager, nessun filtro.</p>
-  <a href="/contatti/" class="hero-cta rv d3" style="color:var(--w);border-color:rgba(255,255,255,.4)">Scrivi a Luigi <span>&rarr;</span></a>
+  <a href="/contatti/" class="hero-cta rv d3">Scrivi a Luigi <span>&rarr;</span></a>
 </section>
 </main>
 

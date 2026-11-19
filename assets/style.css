@@ -161,6 +161,7 @@ footer{background:var(--nn);color:var(--w);padding:54px var(--pad);display:flex;
 .flogo .txt span{color:var(--t)}
 .finfo,.fpiva{font-size:12px;line-height:1.7;color:var(--gm-dark)}
 .fpiva{text-align:right}
+.fsocial{display:flex;gap:4px;margin-top:10px;margin-left:-6px}.fsocial a{display:inline-flex;padding:6px;color:var(--gm-dark);transition:color .3s}.fsocial a:hover,.fsocial a:focus-visible{color:var(--t)}.fsocial svg{width:20px;height:20px;display:block}
 
 /* FORM — /contatti */
 .cform{max-width:560px}

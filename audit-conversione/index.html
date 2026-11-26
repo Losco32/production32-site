@@ -448,7 +448,8 @@ button[type="submit"]:hover { background: #2A2A2A; }
     fetch('/', {
       method: 'POST',
       body: data
-    }).then(function() {
+    }).then(function(res) {
+      if (!res.ok) { throw new Error('HTTP ' + res.status); }
       form.style.display = 'none';
       document.querySelector('.hero').style.display = 'none';
       document.getElementById('thank-you').style.display = 'block';

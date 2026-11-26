@@ -150,6 +150,7 @@ button[type="submit"] {
   margin-top: 12px;
 }
 button[type="submit"]:hover { background: #2A2A2A; }
+button[type="submit"]:disabled { opacity: .6; cursor: wait; }
 
 .footer-note {
   margin-top: 40px;
@@ -405,8 +406,10 @@ button[type="submit"]:hover { background: #2A2A2A; }
     <div class="section-label">Materiali allegati</div>
     <div class="field file-field">
       <label for="allegati">Screenshot analytics, export dati, o altro materiale utile (facoltativo)</label>
-      <input type="file" id="allegati" name="allegati" multiple>
-      <small>Puoi allegare più file: screenshot Google Analytics, export vendite, immagini prodotto.</small>
+      <input type="file" id="allegati" name="allegati" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" style="display:block">
+      <input type="file" id="allegati_2" name="allegati_2" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Secondo allegato (facoltativo)" style="display:block;margin-top:8px">
+      <input type="file" id="allegati_3" name="allegati_3" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Terzo allegato (facoltativo)" style="display:block;margin-top:8px">
+      <small>Fino a 3 file, 7,5 MB in totale. Formati: immagini (PNG, JPG, WebP), PDF, CSV, Excel. Ad esempio screenshot Google Analytics, export vendite, immagini prodotto.</small>
     </div>
 
     <div class="field" style="display:flex;align-items:flex-start;gap:10px;background:var(--superficie);border-radius:8px;padding:14px 16px">
@@ -442,8 +445,20 @@ button[type="submit"]:hover { background: #2A2A2A; }
   });
 
   const form = document.getElementById('audit-form');
+  // Netlify Forms accetta una richiesta di al massimo 8 MB: teniamo un margine per gli altri campi
+  const MAX_ALLEGATI_BYTES = 7.5 * 1024 * 1024;
+  const submitBtn = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    const totale = Array.from(form.querySelectorAll('input[type="file"]')).reduce(function(somma, input) {
+      return somma + Array.from(input.files).reduce(function(s, f) { return s + f.size; }, 0);
+    }, 0);
+    if (totale > MAX_ALLEGATI_BYTES) {
+      alert('Gli allegati pesano ' + (totale / 1048576).toFixed(1).replace('.', ',') + ' MB e il limite totale è 7,5 MB. Riduci o togli qualche file, oppure scrivi a losco@production32.it.');
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Invio in corso…';
     const data = new FormData(form);
     fetch('/', {
       method: 'POST',
@@ -454,6 +469,8 @@ button[type="submit"]:hover { background: #2A2A2A; }
       document.querySelector('.hero').style.display = 'none';
       document.getElementById('thank-you').style.display = 'block';
     }).catch(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Invia questionario';
       alert('Invio non riuscito. Riprova o scrivi a losco@production32.it.');
     });
   });

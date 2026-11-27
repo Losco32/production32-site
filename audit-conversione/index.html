@@ -3,480 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Audit di Conversione — Production32 / P32</title>
-<meta name="description" content="Questionario di audit di conversione per siti e-commerce: poche domande su traffico, checkout e fiducia del cliente per capire dove si perdono le vendite.">
+<title>Audit di Conversione — P32 by Production32</title>
+<meta name="description" content="Dove perde vendite il tuo e-commerce? Questionario gratuito di 5 minuti, quasi tutto a scelta rapida: ricevi un primo riscontro scritto con le tre priorità su cui intervenire.">
+<link rel="canonical" href="https://production32.it/audit-conversione/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preload" href="/assets/fonts/jost-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/dmsans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-
 :root {
-  --tiffany: #81C7BD;
+  --tiffany: #81C7BD;     /* brand: fondi pulsante e accenti su scuro */
+  --tiffany-l: #b8e0db;
+  --teal-ui: #429488;     /* bordi di focus e controlli su bianco: 3.61:1 */
+  --teal-testo: #3b766c;  /* testo teal su chiaro: 5.26:1 su bianco */
   --nero: #1A1A1A;
+  --nero-2: #101010;
   --bianco: #FFFFFF;
   --grigio-scuro: #4A4A4A;
-  --grigio-chiaro: #888888;
+  --grigio: #767676;      /* 4.54:1 su bianco */
+  --linea: #E4E4E4;
   --superficie: #F5F5F5;
+  --ease: cubic-bezier(.22,1,.36,1);
 }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; }
+body { font-family: 'DM Sans', Arial, sans-serif; color: var(--grigio-scuro); background: var(--bianco); line-height: 1.6; }
+a { color: inherit; }
+::selection { background: var(--tiffany); color: var(--nero); }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* HERO */
+.hero { background: var(--nero); color: var(--bianco); padding: 40px 24px 64px; }
+.wrap { max-width: 720px; margin: 0 auto; }
+.hero-logo { display: inline-block; margin-bottom: 56px; }
+.hero-logo img { height: 24px; width: auto; display: block; }
+.eyebrow { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--tiffany); display: flex; align-items: center; gap: 14px; }
+.eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--tiffany); flex: none; }
+.eyebrow a { text-decoration: none; }
+.eyebrow a:hover { color: var(--tiffany-l); }
+.hero h1 { font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(36px, 5.6vw, 60px); line-height: 1.04; letter-spacing: -.025em; margin: 24px 0 24px; text-wrap: balance; }
+.hero h1 em { font-style: normal; font-weight: 400; display: block; }
+.hero-sub { font-size: 16px; font-weight: 300; line-height: 1.75; color: #cfcfcf; max-width: 540px; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; list-style: none; }
+.hero-meta li { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--bianco); border: 1px solid rgba(255,255,255,.22); padding: 8px 14px; }
+.hero-meta li:first-child { border-color: var(--tiffany); color: var(--tiffany); }
 
-body {
-  font-family: 'DM Sans', Arial, sans-serif;
-  color: var(--grigio-scuro);
-  background: var(--bianco);
-  line-height: 1.6;
-}
+/* COSA RICEVI */
+.promise { max-width: 768px; margin: -28px auto 0; padding: 0 24px; position: relative; }
+.promise-card { background: var(--bianco); border: 1px solid var(--linea); border-left: 2px solid var(--tiffany); padding: 22px 26px; box-shadow: 0 18px 40px rgba(26,26,26,.08); }
+.promise-lbl { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--teal-testo); font-weight: 500; margin-bottom: 6px; }
+.promise-card p { font-size: 15px; color: var(--nero); line-height: 1.65; }
+.promise-card p + p { font-size: 13.5px; color: var(--grigio); margin-top: 6px; }
+.promise-card a { color: var(--teal-testo); }
 
-.hero {
-  background: var(--nero);
-  padding: 64px 24px 56px;
-  color: var(--bianco);
-}
-.hero-inner { max-width: 680px; margin: 0 auto; }
-.hero .kicker {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  color: var(--tiffany);
-  text-transform: uppercase;
-}
-.hero h1 {
-  font-family: 'Jost', sans-serif;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.25;
-  margin: 12px 0 16px;
-}
-.hero .rule {
-  width: 64px;
-  height: 2px;
-  background: var(--tiffany);
-  margin-bottom: 16px;
-}
-.hero p {
-  font-size: 15px;
-  color: #CCCCCC;
-  max-width: 520px;
-}
+/* PROGRESS */
+main { max-width: 768px; margin: 0 auto; padding: 48px 24px 96px; }
+.progress { display: none; margin-bottom: 36px; }
+.js .progress { display: block; }
+.progress-top { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--grigio); margin-bottom: 10px; }
+.progress-bar { height: 2px; background: var(--linea); }
+.progress-bar span { display: block; height: 100%; width: 20%; background: var(--teal-ui); transition: width .5s var(--ease); }
 
-main {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 40px 24px 80px;
-}
+/* STEP */
+.step { padding-bottom: 8px; }
+.js .step { display: none; }
+.js .step.active { display: block; animation: in .45s var(--ease); }
+@keyframes in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.step + .step { margin-top: 72px; }
+.js .step + .step { margin-top: 0; }
+.step-head { margin-bottom: 32px; }
+.step-n { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: .2em; color: var(--teal-testo); }
+.step-n span { color: var(--grigio); }
+.step h2 { font-family: 'Jost', sans-serif; font-weight: 300; font-size: clamp(28px, 4vw, 38px); line-height: 1.1; letter-spacing: -.015em; color: var(--nero); margin: 10px 0 8px; outline: none; }
+.step-hint { font-size: 14px; color: var(--grigio); }
 
-.section-label {
-  font-family: 'Jost', sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--nero);
-  border-left: 4px solid var(--tiffany);
-  padding-left: 12px;
-  margin: 36px 0 16px;
-}
-.section-label:first-child { margin-top: 0; }
+/* QUESTIONS */
+.q { border: none; padding: 22px 0; border-top: 1px solid var(--linea); }
+.q legend { font-size: 15px; font-weight: 500; color: var(--nero); line-height: 1.45; margin-bottom: 14px; float: left; width: 100%; }
+.q legend + * { clear: both; }
+.q-hint { display: block; font-weight: 400; font-size: 13px; color: var(--grigio); margin-top: 2px; }
+.q-opt { font-weight: 400; font-size: 12px; color: var(--grigio); margin-left: 6px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt { position: relative; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.opt span { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 9px 18px; border: 1px solid #CFCFCF; border-radius: 40px; font-size: 14px; line-height: 1.3; color: var(--nero); cursor: pointer; transition: background .25s, border-color .25s, color .25s; user-select: none; }
+.opt span:hover { border-color: var(--nero); }
+.opt input[type=checkbox] + span::before { content: ''; width: 12px; height: 12px; border: 1px solid currentColor; flex: none; }
+.opt input:checked + span { background: var(--nero); border-color: var(--nero); color: var(--bianco); }
+.opt input[type=checkbox]:checked + span::before { background: var(--tiffany); border-color: var(--tiffany); }
+.opt input:focus-visible + span { outline: 2px solid var(--teal-ui); outline-offset: 2px; }
+.q.invalid legend { color: #a3261b; }
+.q.invalid legend::after { content: ' Seleziona una risposta per continuare.'; font-weight: 400; font-size: 13px; }
 
-.field { margin-bottom: 20px; }
-.field label {
-  display: block;
-  font-size: 13.5px;
-  color: var(--nero);
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-.field textarea,
-.field input[type="text"],
-.field input[type="email"],
-.field select {
-  width: 100%;
-  border: 1px solid #E0E0E0;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: var(--nero);
-  background: var(--bianco);
-  resize: vertical;
-}
-.field textarea { min-height: 64px; }
-.field textarea:focus,
-.field input:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--tiffany);
-  box-shadow: 0 0 0 3px rgba(129,199,189,0.25);
-}
-
-.callout {
-  background: var(--superficie);
-  border-left: 4px solid var(--tiffany);
-  border-radius: 0 8px 8px 0;
-  padding: 14px 18px;
-  font-size: 13.5px;
-  margin-bottom: 28px;
-}
-.callout .label {
-  display: block;
-  font-family: 'Jost', sans-serif;
-  font-weight: 600;
-  font-size: 11px;
-  color: var(--tiffany);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
+.field { padding: 18px 0; border-top: 1px solid var(--linea); }
+.field label { display: block; font-size: 15px; font-weight: 500; color: var(--nero); margin-bottom: 10px; }
+.field-inline { border-top: none; padding: 16px 0 0; max-width: 320px; }
+.field-inline label { font-size: 13.5px; }
+.field input[type=text], .field input[type=email], .field textarea { width: 100%; border: 1px solid #CFCFCF; border-radius: 0; padding: 12px 14px; font-family: inherit; font-size: 15px; color: var(--nero); background: var(--bianco); transition: border-color .25s, box-shadow .25s; }
+.field textarea { min-height: 96px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--teal-ui); box-shadow: 0 0 0 3px rgba(129,199,189,.35); }
+.field input::placeholder { color: #9a9a9a; }
 
 .sector-block { display: none; }
 .sector-block.active { display: block; }
+.no-js-sector .sector-block { display: block; }
+.sector-lbl { margin-top: 28px; padding: 12px 0; border-top: 2px solid var(--tiffany); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--teal-testo); font-weight: 500; }
 
-.file-field {
-  border: 1px dashed #CCCCCC;
-  border-radius: 8px;
-  padding: 16px;
-  background: var(--superficie);
-}
-.file-field label { font-weight: 500; }
-.file-field small { display: block; color: var(--grigio-chiaro); margin-top: 6px; font-size: 12px; }
+.files { border-top: 1px solid var(--linea); padding: 18px 0; }
+.files summary { cursor: pointer; font-size: 15px; font-weight: 500; color: var(--nero); list-style: none; }
+.files summary::-webkit-details-marker { display: none; }
+.files summary::before { content: '+'; display: inline-block; width: 18px; color: var(--teal-testo); font-family: 'Jost', sans-serif; }
+.files[open] summary::before { content: '–'; }
+.files-body { display: grid; gap: 10px; margin-top: 16px; padding: 18px; background: var(--superficie); }
+.files-body input { font-family: inherit; font-size: 13px; color: var(--grigio-scuro); }
+.files-body input::file-selector-button { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--nero); background: var(--bianco); border: 1px solid #CFCFCF; padding: 9px 16px; margin-right: 14px; cursor: pointer; transition: border-color .25s; }
+.files-body input::file-selector-button:hover { border-color: var(--nero); }
+.files-body small { font-size: 12px; color: #666666; line-height: 1.6; }
 
-button[type="submit"] {
-  font-family: 'Jost', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--bianco);
-  background: var(--nero);
-  border: none;
-  border-radius: 8px;
-  padding: 14px 28px;
-  cursor: pointer;
-  margin-top: 12px;
-}
-button[type="submit"]:hover { background: #2A2A2A; }
-button[type="submit"]:disabled { opacity: .6; cursor: wait; }
+.consent { display: flex; gap: 12px; align-items: flex-start; margin-top: 8px; padding: 16px 18px; background: var(--superficie); }
+.consent input { margin-top: 3px; width: 16px; height: 16px; flex: none; accent-color: var(--teal-ui); }
+.consent label { font-size: 14px; color: var(--grigio-scuro); }
 
-.footer-note {
-  margin-top: 40px;
-  padding-top: 16px;
-  border-top: 1px solid #E8E8E8;
-  font-size: 11.5px;
-  color: var(--grigio-chiaro);
-}
-.footer-note .fsocial { display: flex; gap: 4px; margin-top: 10px; margin-left: -6px; }
-.footer-note .fsocial a { display: inline-flex; padding: 6px; color: var(--grigio-chiaro); transition: color .3s; }
-.footer-note .fsocial a:hover, .footer-note .fsocial a:focus-visible { color: var(--nero); }
-.footer-note .fsocial svg { width: 20px; height: 20px; display: block; }
+/* NAV */
+.step-nav { display: none; }
+.js .step-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--linea); }
+.step:last-child .step-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--linea); }
+.btn-next { display: inline-flex; align-items: center; gap: 14px; font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--nero); background: var(--tiffany); border: none; min-height: 52px; padding: 0 30px; cursor: pointer; transition: background .3s, gap .3s; }
+.btn-next:hover { background: var(--tiffany-l); gap: 20px; }
+.btn-next:focus-visible, .btn-back:focus-visible { outline: 2px solid var(--nero); outline-offset: 3px; }
+.btn-next:disabled { opacity: .6; cursor: wait; }
+.btn-back { background: none; border: none; font-family: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--grigio-scuro); cursor: pointer; padding: 12px 0; }
+.btn-back:hover { color: var(--nero); }
 
-#thank-you {
-  display: none;
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 80px 24px;
-  text-align: center;
+/* FOOTER */
+.foot { max-width: 768px; margin: 0 auto; padding: 0 24px 48px; font-size: 12px; color: var(--grigio); }
+.foot-in { border-top: 1px solid var(--linea); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--nero); }
+.fsocial { display: flex; gap: 4px; }
+.fsocial a { display: inline-flex; padding: 6px; color: var(--grigio); transition: color .3s; }
+.fsocial svg { width: 20px; height: 20px; display: block; }
+
+/* GRAZIE */
+#thank-you { display: none; padding: 48px 0 72px; }
+#thank-you h2 { font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(36px, 5vw, 52px); line-height: 1.05; letter-spacing: -.02em; color: var(--nero); margin: 20px 0 20px; }
+#thank-you h2 em { font-style: normal; font-weight: 400; display: block; }
+#thank-you p { font-size: 16px; line-height: 1.75; color: var(--grigio-scuro); max-width: 520px; }
+#thank-you .eyebrow { color: var(--teal-testo); }
+#thank-you .eyebrow::before { background: var(--teal-ui); }
+.ty-links { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 36px; align-items: center; }
+.ty-links a.btn-next { text-decoration: none; }
+.ty-links a.link { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: var(--grigio-scuro); }
+.ty-links a.link:hover { color: var(--nero); }
+
+@media (max-width: 600px) {
+  .hero { padding: 28px 20px 56px; }
+  .hero-logo { margin-bottom: 40px; }
+  main, .promise, .foot { padding-left: 20px; padding-right: 20px; }
+  .opt span { font-size: 14px; padding: 9px 16px; }
+  .btn-next { padding: 0 22px; }
 }
-#thank-you h2 {
-  font-family: 'Jost', sans-serif;
-  font-size: 24px;
-  color: var(--nero);
-  margin-bottom: 12px;
-}
-#thank-you p { color: var(--grigio-scuro); font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div class="kicker">Audit di conversione — sito e-commerce</div>
-    <h1>Qualche domanda per capire dove si perdono le vendite</h1>
-    <div class="rule"></div>
-    <p>Compila il modulo qui sotto. Bastano 10-15 minuti; anche risposte parziali sono utili all'analisi. Puoi allegare screenshot o export in fondo alla pagina.</p>
+<header class="hero">
+  <div class="wrap">
+    <a href="/" class="hero-logo" aria-label="Production32 home"><img src="/assets/logo-white.svg" alt="Production32" width="138" height="24"></a>
+    <div class="eyebrow"><span><a href="/p32/">P32</a> · Audit di conversione</span></div>
+    <h1>Dove perde vendite<em>il tuo e&#8209;commerce?</em></h1>
+    <p class="hero-sub">Rispondi a poche domande, quasi tutte con un clic. Le leggo io, Luigi Losco, e ti rispondo con un primo riscontro scritto: le tre priorità su cui intervenire.</p>
+    <ul class="hero-meta" aria-label="In breve"><li>Gratuito</li><li>5 minuti</li><li>5 passi</li></ul>
+  </div>
+</header>
+
+<div class="promise">
+  <div class="promise-card">
+    <div class="promise-lbl">Cosa ricevi</div>
+    <p>Un riscontro scritto con le tre priorità che, sul tuo sito, pesano di più sulle vendite perse.</p>
+    <p>Gratuito e senza impegno. Se poi serve un audit completo, lo definiamo a progetto con <a href="/p32/">P32</a>, la divisione di Production32 per la consulenza commerciale.</p>
   </div>
 </div>
 
 <main>
   <form id="audit-form" name="audit-conversione" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
     <input type="hidden" name="form-name" value="audit-conversione">
-    <p style="display:none;"><label>Non compilare se sei umano: <input name="bot-field"></label></p>
+    <p hidden><label>Non compilare se sei umano: <input name="bot-field"></label></p>
 
-    <div class="callout">
-      <span class="label">Nota</span>
-      Audit realizzato da P32, la divisione di Production32 dedicata a consulenza e ottimizzazione dei processi commerciali.
-    </div>
-
-    <div class="section-label">I tuoi dati</div>
-    <div class="field">
-      <label for="azienda">Azienda</label>
-      <input type="text" id="azienda" name="azienda" required>
-    </div>
-    <div class="field">
-      <label for="referente">Nome e cognome</label>
-      <input type="text" id="referente" name="referente" required>
-    </div>
-    <div class="field">
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="field">
-      <label for="settore">Settore</label>
-      <select id="settore" name="settore" required>
-        <option value="">Seleziona il tuo settore</option>
-        <option value="Gioielleria / preziosi">Gioielleria / preziosi</option>
-        <option value="Moda / abbigliamento">Moda / abbigliamento</option>
-        <option value="Food & Beverage">Food & Beverage</option>
-        <option value="Hotel / ricettività">Hotel / ricettività</option>
-        <option value="Altro">Altro</option>
-      </select>
+    <div class="progress" aria-hidden="true">
+      <div class="progress-bar"><span id="prog-bar"></span></div>
     </div>
 
-    <div class="section-label">Traffico</div>
-    <div class="field">
-      <label>I visitatori mensili riportati sono un dato certo o una stima? Da quale strumento viene ricavato?</label>
-      <textarea name="q1_traffico_stima"></textarea>
-    </div>
-    <div class="field">
-      <label>Che percentuale del traffico arriva da Instagram, quanta da ricerca su Google, e quanta da eventuale pubblicità a pagamento?</label>
-      <textarea name="q2_traffico_fonti"></textarea>
-    </div>
-    <div class="field">
-      <label>In caso di pubblicità a pagamento, con quale budget e su cosa punta: traffico generico o retargeting?</label>
-      <textarea name="q3_traffico_ads"></textarea>
-    </div>
-
-    <div class="section-label">Comportamento sul sito</div>
-    <div class="field">
-      <label>È noto in che punto le persone abbandonano il percorso di acquisto: scheda prodotto, carrello, o pagamento?</label>
-      <textarea name="q4_abbandono"></textarea>
-    </div>
-    <div class="field">
-      <label>Si ha un'idea di quante persone aggiungono un prodotto al carrello e poi non completano l'acquisto?</label>
-      <textarea name="q5_carrello_incompleto"></textarea>
-    </div>
-    <div class="field">
-      <label>Sul sito è installato uno strumento di analisi del traffico, anche nella versione gratuita di base?</label>
-      <textarea name="q6_analytics"></textarea>
-    </div>
-    <div class="field">
-      <label>Che percentuale di acquisti avviene da mobile rispetto a desktop, se il dato è disponibile?</label>
-      <textarea name="q7_mobile_desktop"></textarea>
-    </div>
-
-    <div class="section-label">Checkout</div>
-    <div class="field">
-      <label>Con quale piattaforma è costruito il sito (Shopify, WooCommerce, altro)?</label>
-      <textarea name="q8_piattaforma"></textarea>
-    </div>
-    <div class="field">
-      <label>Quanti passaggi servono per completare un acquisto, dal carrello alla conferma dell'ordine?</label>
-      <textarea name="q9_passaggi_checkout"></textarea>
-    </div>
-    <div class="field">
-      <label>Quali metodi di pagamento sono disponibili: solo carta, o anche PayPal, Klarna, Satispay?</label>
-      <textarea name="q10_pagamenti"></textarea>
-    </div>
-    <div class="field">
-      <label>Il costo di spedizione è visibile fin dall'inizio, o compare solo nell'ultimo passaggio?</label>
-      <textarea name="q11_spedizione_visibile"></textarea>
-    </div>
-
-    <div class="section-label">Recupero vendite perse</div>
-    <div class="field">
-      <label>Viene inviata un'email automatica a chi abbandona il carrello? Con quale timing e contenuto?</label>
-      <textarea name="q12_email_carrello"></textarea>
-    </div>
-
-    <div class="section-label">Fiducia del cliente</div>
-    <div class="field">
-      <label>Sono presenti recensioni sul sito, oppure esistono solo sui social?</label>
-      <textarea name="q13_recensioni"></textarea>
-    </div>
-    <div class="field">
-      <label>La politica di reso è indicata in modo chiaro e facile da trovare?</label>
-      <textarea name="q14_reso"></textarea>
-    </div>
-
-    <div class="section-label">Posizionamento</div>
-    <div class="field">
-      <label>Quali sono due o tre competitor diretti, e a che prezzo vendono prodotti simili?</label>
-      <textarea name="q15_competitor"></textarea>
-    </div>
-    <div class="field">
-      <label>Il link in bio sui social dove porta esattamente: home, pagina prodotto, landing dedicata?</label>
-      <textarea name="q16_link_bio"></textarea>
-    </div>
-    <div class="field">
-      <label>I contenuti pubblicati sui social sono coerenti, per stile e messaggio, con quello che si trova sul sito?</label>
-      <textarea name="q17_coerenza_social"></textarea>
-    </div>
-
-    <!-- MODULO GIOIELLERIA -->
-    <div class="sector-block" data-sector="Gioielleria / preziosi">
-      <div class="section-label">Modulo — Gioielleria / preziosi</div>
-      <div class="field">
-        <label>Le certificazioni sui materiali (oro, argento, pietre) sono mostrate in modo che il cliente le percepisca come credibili?</label>
-        <textarea name="a1_certificazioni"></textarea>
-      </div>
-      <div class="field">
-        <label>Le foto dei prodotti sono professionali o amatoriali, con modella o solo still life?</label>
-        <textarea name="a2_foto"></textarea>
-      </div>
-      <div class="field">
-        <label>Le descrizioni prodotto includono misure, materiali e informazioni sul packaging?</label>
-        <textarea name="a3_descrizioni"></textarea>
-      </div>
-      <div class="field">
-        <label>La spedizione di articoli di valore è assicurata, e questo viene comunicato prima dell'acquisto?</label>
-        <textarea name="a4_assicurazione"></textarea>
-      </div>
-    </div>
-
-    <!-- MODULO MODA -->
-    <div class="sector-block" data-sector="Moda / abbigliamento">
-      <div class="section-label">Modulo — Moda / abbigliamento</div>
-      <div class="field">
-        <label>È disponibile una guida taglie chiara, mostrata prima o durante l'aggiunta al carrello?</label>
-        <textarea name="b1_taglie"></textarea>
-      </div>
-      <div class="field">
-        <label>Le foto prodotto mostrano il capo indossato su più modelli/corporature o solo su un modello standard?</label>
-        <textarea name="b2_foto_modelli"></textarea>
-      </div>
-      <div class="field">
-        <label>La politica di reso per taglia sbagliata è comunicata in modo esplicito prima dell'acquisto?</label>
-        <textarea name="b3_reso_taglia"></textarea>
-      </div>
-      <div class="field">
-        <label>Sono indicate composizione dei materiali e istruzioni di lavaggio/cura del capo?</label>
-        <textarea name="b4_composizione"></textarea>
-      </div>
-    </div>
-
-    <!-- MODULO F&B -->
-    <div class="sector-block" data-sector="Food & Beverage">
-      <div class="section-label">Modulo — Food & Beverage</div>
-      <div class="field">
-        <label>Sono indicati chiaramente scadenza, conservazione e modalità di spedizione (refrigerata, corriere standard)?</label>
-        <textarea name="c1_scadenza"></textarea>
-      </div>
-      <div class="field">
-        <label>Sono presenti allergeni e valori nutrizionali in modo facilmente reperibile sulla scheda prodotto?</label>
-        <textarea name="c2_allergeni"></textarea>
-      </div>
-      <div class="field">
-        <label>Il prodotto è vendibile solo in Italia o anche estero, e questo è comunicato prima del checkout?</label>
-        <textarea name="c3_estero"></textarea>
-      </div>
-      <div class="field">
-        <label>Sono indicate certificazioni di origine o denominazione (DOP, IGP, biologico), se rilevanti per il posizionamento?</label>
-        <textarea name="c4_certificazioni_origine"></textarea>
-      </div>
-    </div>
-
-    <!-- MODULO HOTEL -->
-    <div class="sector-block" data-sector="Hotel / ricettività">
-      <div class="section-label">Modulo — Hotel / ricettività</div>
-      <div class="field">
-        <label>Il motore di prenotazione diretto garantisce lo stesso prezzo o un vantaggio rispetto alle OTA (Booking.com, Expedia)?</label>
-        <textarea name="e1_parita_prezzo"></textarea>
-      </div>
-      <div class="field">
-        <label>Quanti passaggi servono per completare una prenotazione diretta dal sito, dalla scelta della camera alla conferma?</label>
-        <textarea name="e2_passaggi_prenotazione"></textarea>
-      </div>
-      <div class="field">
-        <label>La politica di cancellazione è visibile prima di inserire i dati di pagamento?</label>
-        <textarea name="e3_cancellazione"></textarea>
-      </div>
-    </div>
-
-    <!-- MODULO ALTRO -->
-    <div class="sector-block" data-sector="Altro">
-      <div class="section-label">Modulo — Altro settore</div>
-      <div class="field">
-        <label>Ci sono caratteristiche tecniche, normative o di sicurezza del prodotto da conoscere prima dell'acquisto, comunicate in modo chiaro?</label>
-        <textarea name="d1_tecniche"></textarea>
-      </div>
-      <div class="field">
-        <label>Il prodotto richiede installazione, configurazione o assistenza post-vendita, visibile prima del checkout?</label>
-        <textarea name="d2_installazione"></textarea>
-      </div>
-      <div class="field">
-        <label>Esistono vincoli di vendita (territoriali, di età, di licenza) indicati chiaramente sul sito?</label>
-        <textarea name="d3_vincoli"></textarea>
-      </div>
-    </div>
-
-    <div class="section-label">Materiali allegati</div>
-    <div class="field file-field">
-      <label for="allegati">Screenshot analytics, export dati, o altro materiale utile (facoltativo)</label>
-      <input type="file" id="allegati" name="allegati" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" style="display:block">
-      <input type="file" id="allegati_2" name="allegati_2" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Secondo allegato (facoltativo)" style="display:block;margin-top:8px">
-      <input type="file" id="allegati_3" name="allegati_3" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Terzo allegato (facoltativo)" style="display:block;margin-top:8px">
-      <small>Fino a 3 file, 7,5 MB in totale. Formati: immagini (PNG, JPG, WebP), PDF, CSV, Excel. Ad esempio screenshot Google Analytics, export vendite, immagini prodotto.</small>
-    </div>
-
-    <div class="field" style="display:flex;align-items:flex-start;gap:10px;background:var(--superficie);border-radius:8px;padding:14px 16px">
-      <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required style="margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--tiffany)">
-      <label for="consenso_privacy" style="font-weight:400;margin-bottom:0">Ho letto l'<a href="/privacy/" target="_blank" rel="noopener" style="color:var(--nero);text-decoration:underline">Informativa Privacy</a> e acconsento al trattamento dei miei dati per l'elaborazione dell'audit richiesto.</label>
-    </div>
-
-    <button type="submit">Invia questionario</button>
-
-    <div class="footer-note">
-      production32.it &nbsp;·&nbsp; losco@production32.it &nbsp;·&nbsp; +39 331 9123544
-      <div class="fsocial"><a href="https://www.instagram.com/losco.production32/" target="_blank" rel="noopener" aria-label="Production32 su Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/company/production32/" target="_blank" rel="noopener" aria-label="Production32 su LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16"/><circle cx="8" cy="7.9" r=".9" fill="currentColor" stroke="none"/><path d="M12 16v-5.5M12 12.8c0-1.4 1-2.3 2.3-2.3 1.4 0 2.2.9 2.2 2.5V16"/></svg></a></div>
-    </div>
+<section class="step" data-step="1" aria-labelledby="step-t-1">
+  <div class="step-head">
+    <div class="step-n">01 <span>/ 05</span></div>
+    <h2 id="step-t-1" tabindex="-1">Il tuo e-commerce</h2>
+    <p class="step-hint">Due risposte per partire.</p>
+  </div>
+  <fieldset class="q"><legend>In che settore lavori?</legend><div class="opts"><label class="opt"><input type="radio" name="settore" value="Gioielleria / preziosi" required><span>Gioielleria / preziosi</span></label><label class="opt"><input type="radio" name="settore" value="Moda / abbigliamento"><span>Moda / abbigliamento</span></label><label class="opt"><input type="radio" name="settore" value="Food &amp; Beverage"><span>Food &amp; Beverage</span></label><label class="opt"><input type="radio" name="settore" value="Hotel / ricettività"><span>Hotel / ricettività</span></label><label class="opt"><input type="radio" name="settore" value="Altro"><span>Altro</span></label></div></fieldset><fieldset class="q"><legend>Con quale piattaforma è costruito il sito?</legend><div class="opts"><label class="opt"><input type="radio" name="piattaforma" value="Shopify"><span>Shopify</span></label><label class="opt"><input type="radio" name="piattaforma" value="WooCommerce"><span>WooCommerce</span></label><label class="opt"><input type="radio" name="piattaforma" value="PrestaShop"><span>PrestaShop</span></label><label class="opt"><input type="radio" name="piattaforma" value="Magento / Adobe Commerce"><span>Magento / Adobe Commerce</span></label><label class="opt"><input type="radio" name="piattaforma" value="Altro"><span>Altro</span></label><label class="opt"><input type="radio" name="piattaforma" value="Non so"><span>Non so</span></label></div></fieldset>
+  <div class="step-nav"><span></span><button type="button" class="btn-next" data-next>Avanti <span aria-hidden="true">&rarr;</span></button></div>
+</section>
+<section class="step" data-step="2" aria-labelledby="step-t-2">
+  <div class="step-head">
+    <div class="step-n">02 <span>/ 05</span></div>
+    <h2 id="step-t-2" tabindex="-1">Traffico</h2>
+    <p class="step-hint">Basta un ordine di grandezza: «Non so» è una risposta utile.</p>
+  </div>
+  <fieldset class="q"><legend>Quanti visitatori al mese, più o meno?</legend><div class="opts"><label class="opt"><input type="radio" name="visitatori" value="Meno di 1.000"><span>Meno di 1.000</span></label><label class="opt"><input type="radio" name="visitatori" value="1.000 - 10.000"><span>1.000 - 10.000</span></label><label class="opt"><input type="radio" name="visitatori" value="10.000 - 50.000"><span>10.000 - 50.000</span></label><label class="opt"><input type="radio" name="visitatori" value="Oltre 50.000"><span>Oltre 50.000</span></label><label class="opt"><input type="radio" name="visitatori" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Il dato sui visitatori da dove viene?</legend><div class="opts"><label class="opt"><input type="radio" name="visitatori_fonte" value="Da uno strumento di analisi"><span>Da uno strumento di analisi</span></label><label class="opt"><input type="radio" name="visitatori_fonte" value="È una stima"><span>È una stima</span></label><label class="opt"><input type="radio" name="visitatori_fonte" value="Non lo so"><span>Non lo so</span></label></div></fieldset><fieldset class="q"><legend>Da dove arrivano più visitatori?<span class="q-hint">Puoi sceglierne più di una.</span></legend><div class="opts"><label class="opt"><input type="checkbox" name="fonti_traffico[]" value="Instagram e social"><span>Instagram e social</span></label><label class="opt"><input type="checkbox" name="fonti_traffico[]" value="Ricerca Google"><span>Ricerca Google</span></label><label class="opt"><input type="checkbox" name="fonti_traffico[]" value="Pubblicità a pagamento"><span>Pubblicità a pagamento</span></label><label class="opt"><input type="checkbox" name="fonti_traffico[]" value="Newsletter o diretto"><span>Newsletter o diretto</span></label><label class="opt"><input type="checkbox" name="fonti_traffico[]" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Fai pubblicità a pagamento?</legend><div class="opts"><label class="opt"><input type="radio" name="pubblicita" value="No"><span>No</span></label><label class="opt"><input type="radio" name="pubblicita" value="Sì, per portare traffico nuovo"><span>Sì, per portare traffico nuovo</span></label><label class="opt"><input type="radio" name="pubblicita" value="Sì, retargeting"><span>Sì, retargeting</span></label><label class="opt"><input type="radio" name="pubblicita" value="Sì, entrambe"><span>Sì, entrambe</span></label><label class="opt"><input type="radio" name="pubblicita" value="Non so"><span>Non so</span></label></div><div class="field field-inline"><label for="pubblicita_budget">Budget mensile indicativo <span class="q-opt">facoltativo</span></label><input type="text" id="pubblicita_budget" name="pubblicita_budget" inputmode="decimal" placeholder="es. 500 €"></div></fieldset><fieldset class="q"><legend>Sul sito è installato uno strumento di analisi?</legend><div class="opts"><label class="opt"><input type="radio" name="analytics" value="Sì, Google Analytics"><span>Sì, Google Analytics</span></label><label class="opt"><input type="radio" name="analytics" value="Sì, un altro strumento"><span>Sì, un altro strumento</span></label><label class="opt"><input type="radio" name="analytics" value="No"><span>No</span></label><label class="opt"><input type="radio" name="analytics" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Da quale dispositivo arrivano più acquisti?</legend><div class="opts"><label class="opt"><input type="radio" name="dispositivo" value="Soprattutto mobile"><span>Soprattutto mobile</span></label><label class="opt"><input type="radio" name="dispositivo" value="Metà e metà"><span>Metà e metà</span></label><label class="opt"><input type="radio" name="dispositivo" value="Soprattutto desktop"><span>Soprattutto desktop</span></label><label class="opt"><input type="radio" name="dispositivo" value="Non so"><span>Non so</span></label></div></fieldset>
+  <div class="step-nav"><button type="button" class="btn-back" data-back>&larr; Indietro</button><button type="button" class="btn-next" data-next>Avanti <span aria-hidden="true">&rarr;</span></button></div>
+</section>
+<section class="step" data-step="3" aria-labelledby="step-t-3">
+  <div class="step-head">
+    <div class="step-n">03 <span>/ 05</span></div>
+    <h2 id="step-t-3" tabindex="-1">Acquisto e checkout</h2>
+    <p class="step-hint">Dove si ferma chi stava per comprare.</p>
+  </div>
+  <fieldset class="q"><legend>In che punto le persone abbandonano più spesso?</legend><div class="opts"><label class="opt"><input type="radio" name="abbandono" value="Scheda prodotto"><span>Scheda prodotto</span></label><label class="opt"><input type="radio" name="abbandono" value="Carrello"><span>Carrello</span></label><label class="opt"><input type="radio" name="abbandono" value="Pagamento"><span>Pagamento</span></label><label class="opt"><input type="radio" name="abbandono" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Sai quanti aggiungono al carrello e non completano?</legend><div class="opts"><label class="opt"><input type="radio" name="carrelli_abbandonati" value="Sì, ho il dato"><span>Sì, ho il dato</span></label><label class="opt"><input type="radio" name="carrelli_abbandonati" value="Ho un&#x27;idea"><span>Ho un&#x27;idea</span></label><label class="opt"><input type="radio" name="carrelli_abbandonati" value="No"><span>No</span></label></div></fieldset><fieldset class="q"><legend>Quanti passaggi dal carrello alla conferma dell&#x27;ordine?</legend><div class="opts"><label class="opt"><input type="radio" name="passaggi_checkout" value="1-2"><span>1-2</span></label><label class="opt"><input type="radio" name="passaggi_checkout" value="3-4"><span>3-4</span></label><label class="opt"><input type="radio" name="passaggi_checkout" value="5 o più"><span>5 o più</span></label><label class="opt"><input type="radio" name="passaggi_checkout" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Quali pagamenti accetti?<span class="q-hint">Seleziona tutti quelli attivi.</span></legend><div class="opts"><label class="opt"><input type="checkbox" name="pagamenti[]" value="Carta"><span>Carta</span></label><label class="opt"><input type="checkbox" name="pagamenti[]" value="PayPal"><span>PayPal</span></label><label class="opt"><input type="checkbox" name="pagamenti[]" value="Klarna o Scalapay"><span>Klarna o Scalapay</span></label><label class="opt"><input type="checkbox" name="pagamenti[]" value="Satispay"><span>Satispay</span></label><label class="opt"><input type="checkbox" name="pagamenti[]" value="Apple Pay / Google Pay"><span>Apple Pay / Google Pay</span></label><label class="opt"><input type="checkbox" name="pagamenti[]" value="Bonifico"><span>Bonifico</span></label></div></fieldset><fieldset class="q"><legend>Il costo di spedizione quando si vede?</legend><div class="opts"><label class="opt"><input type="radio" name="spedizione" value="Dall&#x27;inizio, sulla scheda prodotto"><span>Dall&#x27;inizio, sulla scheda prodotto</span></label><label class="opt"><input type="radio" name="spedizione" value="Solo all&#x27;ultimo passaggio"><span>Solo all&#x27;ultimo passaggio</span></label><label class="opt"><input type="radio" name="spedizione" value="Spedizione sempre gratuita"><span>Spedizione sempre gratuita</span></label><label class="opt"><input type="radio" name="spedizione" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Chi abbandona il carrello riceve un&#x27;email automatica?</legend><div class="opts"><label class="opt"><input type="radio" name="email_carrello" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="email_carrello" value="No"><span>No</span></label><label class="opt"><input type="radio" name="email_carrello" value="Non so"><span>Non so</span></label></div></fieldset>
+  <div class="step-nav"><button type="button" class="btn-back" data-back>&larr; Indietro</button><button type="button" class="btn-next" data-next>Avanti <span aria-hidden="true">&rarr;</span></button></div>
+</section>
+<section class="step" data-step="4" aria-labelledby="step-t-4">
+  <div class="step-head">
+    <div class="step-n">04 <span>/ 05</span></div>
+    <h2 id="step-t-4" tabindex="-1">Fiducia e social</h2>
+    <p class="step-hint">Cosa vede il cliente prima di fidarsi.</p>
+  </div>
+  <fieldset class="q"><legend>Le recensioni dove sono?</legend><div class="opts"><label class="opt"><input type="radio" name="recensioni" value="Sul sito"><span>Sul sito</span></label><label class="opt"><input type="radio" name="recensioni" value="Solo sui social"><span>Solo sui social</span></label><label class="opt"><input type="radio" name="recensioni" value="Non ne ho"><span>Non ne ho</span></label></div></fieldset><fieldset class="q"><legend>La politica di reso è chiara e facile da trovare?</legend><div class="opts"><label class="opt"><input type="radio" name="reso" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="reso" value="Esiste ma è poco visibile"><span>Esiste ma è poco visibile</span></label><label class="opt"><input type="radio" name="reso" value="No"><span>No</span></label></div></fieldset><fieldset class="q"><legend>Il link in bio sui social dove porta?</legend><div class="opts"><label class="opt"><input type="radio" name="link_bio" value="Home page"><span>Home page</span></label><label class="opt"><input type="radio" name="link_bio" value="Pagina prodotto"><span>Pagina prodotto</span></label><label class="opt"><input type="radio" name="link_bio" value="Pagina dedicata"><span>Pagina dedicata</span></label><label class="opt"><input type="radio" name="link_bio" value="Una pagina di link"><span>Una pagina di link</span></label><label class="opt"><input type="radio" name="link_bio" value="Altro"><span>Altro</span></label></div></fieldset><fieldset class="q"><legend>Stile e messaggio dei social sono coerenti con il sito?</legend><div class="opts"><label class="opt"><input type="radio" name="coerenza_social" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="coerenza_social" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="coerenza_social" value="No"><span>No</span></label></div></fieldset><div class="sector-block" data-sector="Gioielleria / preziosi"><div class="sector-lbl">Domande per il settore gioielleria</div><fieldset class="q"><legend>Le certificazioni dei materiali (oro, argento, pietre) sono mostrate in modo credibile?</legend><div class="opts"><label class="opt"><input type="radio" name="gio_certificazioni" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="gio_certificazioni" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="gio_certificazioni" value="No"><span>No</span></label><label class="opt"><input type="radio" name="gio_certificazioni" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Le foto prodotto sono:</legend><div class="opts"><label class="opt"><input type="radio" name="gio_foto" value="Professionali, con modella"><span>Professionali, con modella</span></label><label class="opt"><input type="radio" name="gio_foto" value="Professionali, still life"><span>Professionali, still life</span></label><label class="opt"><input type="radio" name="gio_foto" value="Amatoriali"><span>Amatoriali</span></label><label class="opt"><input type="radio" name="gio_foto" value="Miste"><span>Miste</span></label></div></fieldset><fieldset class="q"><legend>Le descrizioni includono misure, materiali e packaging?</legend><div class="opts"><label class="opt"><input type="radio" name="gio_descrizioni" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="gio_descrizioni" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="gio_descrizioni" value="No"><span>No</span></label><label class="opt"><input type="radio" name="gio_descrizioni" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>La spedizione assicurata è comunicata prima dell&#x27;acquisto?</legend><div class="opts"><label class="opt"><input type="radio" name="gio_assicurazione" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="gio_assicurazione" value="No"><span>No</span></label><label class="opt"><input type="radio" name="gio_assicurazione" value="Non è assicurata"><span>Non è assicurata</span></label><label class="opt"><input type="radio" name="gio_assicurazione" value="Non so"><span>Non so</span></label></div></fieldset></div><div class="sector-block" data-sector="Moda / abbigliamento"><div class="sector-lbl">Domande per il settore moda</div><fieldset class="q"><legend>C&#x27;è una guida taglie chiara prima dell&#x27;aggiunta al carrello?</legend><div class="opts"><label class="opt"><input type="radio" name="moda_taglie" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="moda_taglie" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="moda_taglie" value="No"><span>No</span></label><label class="opt"><input type="radio" name="moda_taglie" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Le foto mostrano il capo indossato su più corporature?</legend><div class="opts"><label class="opt"><input type="radio" name="moda_foto" value="Sì, più modelli"><span>Sì, più modelli</span></label><label class="opt"><input type="radio" name="moda_foto" value="Un solo modello"><span>Un solo modello</span></label><label class="opt"><input type="radio" name="moda_foto" value="Solo still life"><span>Solo still life</span></label></div></fieldset><fieldset class="q"><legend>Il reso per taglia sbagliata è spiegato prima dell&#x27;acquisto?</legend><div class="opts"><label class="opt"><input type="radio" name="moda_reso_taglia" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="moda_reso_taglia" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="moda_reso_taglia" value="No"><span>No</span></label><label class="opt"><input type="radio" name="moda_reso_taglia" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Sono indicate composizione e istruzioni di cura del capo?</legend><div class="opts"><label class="opt"><input type="radio" name="moda_composizione" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="moda_composizione" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="moda_composizione" value="No"><span>No</span></label><label class="opt"><input type="radio" name="moda_composizione" value="Non so"><span>Non so</span></label></div></fieldset></div><div class="sector-block" data-sector="Food &amp; Beverage"><div class="sector-lbl">Domande per il settore food &amp; beverage</div><fieldset class="q"><legend>Scadenza, conservazione e modalità di spedizione sono indicate chiaramente?</legend><div class="opts"><label class="opt"><input type="radio" name="fb_scadenza" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="fb_scadenza" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="fb_scadenza" value="No"><span>No</span></label><label class="opt"><input type="radio" name="fb_scadenza" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Allergeni e valori nutrizionali sono facili da trovare nella scheda prodotto?</legend><div class="opts"><label class="opt"><input type="radio" name="fb_allergeni" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="fb_allergeni" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="fb_allergeni" value="No"><span>No</span></label><label class="opt"><input type="radio" name="fb_allergeni" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Dove vendi?</legend><div class="opts"><label class="opt"><input type="radio" name="fb_estero" value="Solo Italia"><span>Solo Italia</span></label><label class="opt"><input type="radio" name="fb_estero" value="Anche estero, ed è comunicato prima del checkout"><span>Anche estero, ed è comunicato prima del checkout</span></label><label class="opt"><input type="radio" name="fb_estero" value="Anche estero, ma non è comunicato"><span>Anche estero, ma non è comunicato</span></label></div></fieldset><fieldset class="q"><legend>Le certificazioni di origine (DOP, IGP, bio) sono indicate?</legend><div class="opts"><label class="opt"><input type="radio" name="fb_certificazioni" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="fb_certificazioni" value="No"><span>No</span></label><label class="opt"><input type="radio" name="fb_certificazioni" value="Non rilevanti per i miei prodotti"><span>Non rilevanti per i miei prodotti</span></label></div></fieldset></div><div class="sector-block" data-sector="Hotel / ricettività"><div class="sector-lbl">Domande per il settore hotel</div><fieldset class="q"><legend>La prenotazione diretta ha un prezzo migliore o uguale rispetto a Booking.com ed Expedia?</legend><div class="opts"><label class="opt"><input type="radio" name="hotel_parita" value="Migliore"><span>Migliore</span></label><label class="opt"><input type="radio" name="hotel_parita" value="Uguale"><span>Uguale</span></label><label class="opt"><input type="radio" name="hotel_parita" value="Più alto"><span>Più alto</span></label><label class="opt"><input type="radio" name="hotel_parita" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Quanti passaggi servono per prenotare dal sito, dalla camera alla conferma?</legend><div class="opts"><label class="opt"><input type="radio" name="hotel_passaggi" value="1-3"><span>1-3</span></label><label class="opt"><input type="radio" name="hotel_passaggi" value="4-5"><span>4-5</span></label><label class="opt"><input type="radio" name="hotel_passaggi" value="6 o più"><span>6 o più</span></label><label class="opt"><input type="radio" name="hotel_passaggi" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>La politica di cancellazione è visibile prima di inserire i dati di pagamento?</legend><div class="opts"><label class="opt"><input type="radio" name="hotel_cancellazione" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="hotel_cancellazione" value="No"><span>No</span></label><label class="opt"><input type="radio" name="hotel_cancellazione" value="Non so"><span>Non so</span></label></div></fieldset></div><div class="sector-block" data-sector="Altro"><div class="sector-lbl">Domande per il settore altro</div><fieldset class="q"><legend>Caratteristiche tecniche, normative o di sicurezza sono spiegate in modo chiaro?</legend><div class="opts"><label class="opt"><input type="radio" name="altro_tecniche" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="altro_tecniche" value="In parte"><span>In parte</span></label><label class="opt"><input type="radio" name="altro_tecniche" value="No"><span>No</span></label><label class="opt"><input type="radio" name="altro_tecniche" value="Non so"><span>Non so</span></label></div></fieldset><fieldset class="q"><legend>Il prodotto richiede installazione o assistenza? È indicato prima dell&#x27;acquisto?</legend><div class="opts"><label class="opt"><input type="radio" name="altro_assistenza" value="Non serve"><span>Non serve</span></label><label class="opt"><input type="radio" name="altro_assistenza" value="Sì, ed è indicato"><span>Sì, ed è indicato</span></label><label class="opt"><input type="radio" name="altro_assistenza" value="Sì, ma non è indicato"><span>Sì, ma non è indicato</span></label></div></fieldset><fieldset class="q"><legend>Eventuali vincoli di vendita (territorio, età, licenza) sono indicati?</legend><div class="opts"><label class="opt"><input type="radio" name="altro_vincoli" value="Sì"><span>Sì</span></label><label class="opt"><input type="radio" name="altro_vincoli" value="No"><span>No</span></label><label class="opt"><input type="radio" name="altro_vincoli" value="Non ci sono vincoli"><span>Non ci sono vincoli</span></label></div></fieldset></div>
+  <div class="step-nav"><button type="button" class="btn-back" data-back>&larr; Indietro</button><button type="button" class="btn-next" data-next>Avanti <span aria-hidden="true">&rarr;</span></button></div>
+</section>
+<section class="step" data-step="5" aria-labelledby="step-t-5">
+  <div class="step-head">
+    <div class="step-n">05 <span>/ 05</span></div>
+    <h2 id="step-t-5" tabindex="-1">Il tuo sito e i tuoi contatti</h2>
+    <p class="step-hint">Mi servono per guardare il sito e risponderti.</p>
+  </div>
+  <div class="field"><label for="sito">Indirizzo del sito</label><input type="text" id="sito" name="sito" required inputmode="url" autocomplete="url" placeholder="www.tuosito.it"></div><div class="field"><label for="azienda">Azienda</label><input type="text" id="azienda" name="azienda" required autocomplete="organization"></div><div class="field"><label for="referente">Nome e cognome</label><input type="text" id="referente" name="referente" required autocomplete="name"></div><div class="field"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email"></div><div class="field"><label for="competitor">Due o tre competitor diretti <span class="q-opt">facoltativo</span><span class="q-hint">Nomi o siti: mi servono per il confronto di prezzo e presentazione.</span></label><input type="text" id="competitor" name="competitor"></div><div class="field"><label for="note">C'è altro che dovrei sapere? <span class="q-opt">facoltativo</span></label><textarea id="note" name="note"></textarea></div><details class="files"><summary>Vuoi allegare screenshot o export? <span class="q-opt">facoltativo</span></summary>
+<div class="files-body">
+<input type="file" id="allegati" name="allegati" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Primo allegato">
+<input type="file" id="allegati_2" name="allegati_2" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Secondo allegato">
+<input type="file" id="allegati_3" name="allegati_3" accept=".png,.jpg,.jpeg,.webp,.pdf,.csv,.xls,.xlsx" aria-label="Terzo allegato">
+<small>Fino a 3 file, 7,5 MB in totale: immagini, PDF, CSV, Excel. Ad esempio screenshot di Google Analytics o export delle vendite.</small>
+</div></details><div class="consent"><input type="checkbox" id="consenso_privacy" name="consenso_privacy" required>
+<label for="consenso_privacy">Ho letto l'<a href="/privacy/" target="_blank" rel="noopener">Informativa Privacy</a> e acconsento al trattamento dei miei dati per l'elaborazione dell'audit richiesto.</label></div>
+  <div class="step-nav"><button type="button" class="btn-back" data-back>&larr; Indietro</button><button type="submit" class="btn-next">Invia il questionario <span aria-hidden="true">&rarr;</span></button></div>
+</section>
   </form>
 
-  <div id="thank-you">
-    <h2>Grazie, questionario ricevuto</h2>
-    <p>Lo esamino e ti ricontatto a breve con i primi riscontri.</p>
+  <div id="thank-you" role="status">
+    <div class="eyebrow">Questionario ricevuto</div>
+    <h2>Grazie.<em>Ora tocca a me.</em></h2>
+    <p>Leggo le tue risposte e guardo il sito. Ti scrivo all'indirizzo che hai indicato con il primo riscontro: le tre priorità su cui intervenire.</p>
+    <div class="ty-links"><a href="/p32/" class="btn-next">Scopri P32 <span aria-hidden="true">&rarr;</span></a><a href="/" class="link">Torna a production32.it</a></div>
   </div>
 </main>
 
+<footer class="foot">
+  <div class="foot-in">
+    <div><a href="/">production32.it</a> &nbsp;·&nbsp; <a href="mailto:losco@production32.it">losco@production32.it</a> &nbsp;·&nbsp; <a href="tel:+393319123544">+39 331 9123544</a></div>
+    <div class="fsocial"><a href="https://www.instagram.com/losco.production32/" target="_blank" rel="noopener" aria-label="Production32 su Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/company/production32/" target="_blank" rel="noopener" aria-label="Production32 su LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16"/><circle cx="8" cy="7.9" r=".9" fill="currentColor" stroke="none"/><path d="M12 16v-5.5M12 12.8c0-1.4 1-2.3 2.3-2.3 1.4 0 2.2.9 2.2 2.5V16"/></svg></a></div>
+  </div>
+</footer>
+
 <script>
-  const settoreSelect = document.getElementById('settore');
-  const blocks = document.querySelectorAll('.sector-block');
-  settoreSelect.addEventListener('change', function() {
-    blocks.forEach(function(b) {
-      const isActive = b.dataset.sector === settoreSelect.value;
-      b.classList.toggle('active', isActive);
-      b.querySelectorAll('textarea, input').forEach(function(field) {
-        field.disabled = !isActive;
-      });
+(function () {
+  var form = document.getElementById('audit-form');
+  var steps = Array.prototype.slice.call(form.querySelectorAll('.step'));
+  var bar = document.getElementById('prog-bar');
+  var cur = 0;
+  form.noValidate = true; // la validazione per passo la gestisce lo script
+
+  // Moduli di settore: visibili e inviati solo per il settore scelto
+  var blocks = form.querySelectorAll('.sector-block');
+  function setSector(value) {
+    blocks.forEach(function (b) {
+      var on = b.dataset.sector === value;
+      b.classList.toggle('active', on);
+      b.querySelectorAll('input, textarea').forEach(function (f) { f.disabled = !on; });
     });
+  }
+  setSector('');
+  form.querySelectorAll('input[name="settore"]').forEach(function (r) {
+    r.addEventListener('change', function () { setSector(r.value); clearInvalid(r); });
   });
 
-  const form = document.getElementById('audit-form');
-  // Netlify Forms accetta una richiesta di al massimo 8 MB: teniamo un margine per gli altri campi
-  const MAX_ALLEGATI_BYTES = 7.5 * 1024 * 1024;
-  const submitBtn = form.querySelector('button[type="submit"]');
-  form.addEventListener('submit', function(e) {
+  function clearInvalid(el) { var q = el.closest('.q'); if (q) q.classList.remove('invalid'); }
+  form.addEventListener('change', function (e) { clearInvalid(e.target); });
+
+  function show(i, focus) {
+    steps.forEach(function (s, k) { s.classList.toggle('active', k === i); });
+    cur = i;
+    bar.style.width = ((i + 1) / steps.length * 100) + '%';
+    if (focus) {
+      var top = form.getBoundingClientRect().top + window.pageYOffset - 24;
+      if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+      steps[i].querySelector('h2').focus({ preventScroll: true });
+    }
+  }
+
+  function valid(step) {
+    var ok = true, first = null;
+    // gruppi di scelta obbligatori
+    step.querySelectorAll('input[type=radio][required]').forEach(function (r) {
+      if (r.disabled) return;
+      var checked = form.querySelector('input[name="' + r.name + '"]:checked');
+      if (!checked) { ok = false; var q = r.closest('.q'); q.classList.add('invalid'); first = first || r; }
+    });
+    // campi di testo e consenso
+    step.querySelectorAll('input[type=text][required], input[type=email][required], input[type=checkbox][required]').forEach(function (f) {
+      if (!f.checkValidity()) { ok = false; first = first || f; }
+    });
+    if (first) {
+      if (first.type === 'radio') { first.closest('.q').scrollIntoView({ behavior: 'smooth', block: 'center' }); first.focus({ preventScroll: true }); }
+      else { first.reportValidity(); }
+    }
+    return ok;
+  }
+
+  form.addEventListener('click', function (e) {
+    if (e.target.closest('[data-next]')) { if (valid(steps[cur])) show(cur + 1, true); }
+    if (e.target.closest('[data-back]')) { show(cur - 1, true); }
+  });
+
+  // Netlify Forms accetta al massimo 8 MB per richiesta: margine per gli altri campi
+  var MAX = 7.5 * 1024 * 1024;
+  var submitBtn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const totale = Array.from(form.querySelectorAll('input[type="file"]')).reduce(function(somma, input) {
-      return somma + Array.from(input.files).reduce(function(s, f) { return s + f.size; }, 0);
-    }, 0);
-    if (totale > MAX_ALLEGATI_BYTES) {
-      alert('Gli allegati pesano ' + (totale / 1048576).toFixed(1).replace('.', ',') + ' MB e il limite totale è 7,5 MB. Riduci o togli qualche file, oppure scrivi a losco@production32.it.');
+    if (cur < steps.length - 1) { if (valid(steps[cur])) show(cur + 1, true); return; }
+    if (!valid(steps[cur])) return;
+    var tot = 0;
+    form.querySelectorAll('input[type=file]').forEach(function (inp) {
+      Array.prototype.forEach.call(inp.files, function (f) { tot += f.size; });
+    });
+    if (tot > MAX) {
+      alert('Gli allegati pesano ' + (tot / 1048576).toFixed(1).replace('.', ',') + ' MB e il limite totale è 7,5 MB. Riduci o togli qualche file, oppure scrivi a losco@production32.it.');
       return;
     }
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Invio in corso…';
-    const data = new FormData(form);
-    fetch('/', {
-      method: 'POST',
-      body: data
-    }).then(function(res) {
-      if (!res.ok) { throw new Error('HTTP ' + res.status); }
+    submitBtn.firstChild.textContent = 'Invio in corso… ';
+    fetch('/', { method: 'POST', body: new FormData(form) }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       form.style.display = 'none';
-      document.querySelector('.hero').style.display = 'none';
+      document.querySelector('.promise').style.display = 'none';
       document.getElementById('thank-you').style.display = 'block';
-    }).catch(function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }).catch(function () {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Invia questionario';
+      submitBtn.firstChild.textContent = 'Invia il questionario ';
       alert('Invio non riuscito. Riprova o scrivi a losco@production32.it.');
     });
   });
-</script>
 
+  show(0, false);
+})();
+</script>
+<noscript><style>.sector-block{display:block}</style></noscript>
 </body>
 </html>

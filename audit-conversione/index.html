@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Audit di Conversione — Production32 / P32</title>
 <meta name="description" content="Questionario di audit di conversione per siti e-commerce: poche domande su traffico, checkout e fiducia del cliente per capire dove si perdono le vendite.">
+<link rel="canonical" href="https://production32.it/audit-conversione/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preload" href="/assets/fonts/jost-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/dmsans-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
@@ -15,7 +17,10 @@
   --nero: #1A1A1A;
   --bianco: #FFFFFF;
   --grigio-scuro: #4A4A4A;
-  --grigio-chiaro: #888888;
+  --grigio-chiaro: #767676; /* 4.54:1 su bianco */
+  --grigio-note: #666666;   /* 5.27:1 sul grigio superficie */
+  --teal-testo: #3b766c;    /* testo teal su chiaro: 4.82:1 su #F5F5F5 */
+  --teal-ui: #429488;       /* bordi di focus e checkbox: 3.61:1 su bianco */
   --superficie: #F5F5F5;
 }
 
@@ -34,30 +39,33 @@ body {
   color: var(--bianco);
 }
 .hero-inner { max-width: 680px; margin: 0 auto; }
+.hero-logo { display: inline-block; margin-bottom: 44px; }
+.hero-logo img { height: 24px; width: auto; display: block; }
 .hero .kicker {
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.5px;
+  font-size: 11px;
+  letter-spacing: .28em;
   color: var(--tiffany);
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
+.hero .kicker::before { content: ''; width: 34px; height: 1px; background: var(--tiffany); flex: none; }
 .hero h1 {
   font-family: 'Jost', sans-serif;
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.25;
-  margin: 12px 0 16px;
-}
-.hero .rule {
-  width: 64px;
-  height: 2px;
-  background: var(--tiffany);
-  margin-bottom: 16px;
+  font-weight: 300;
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -.015em;
+  margin: 20px 0 20px;
+  text-wrap: balance;
 }
 .hero p {
   font-size: 15px;
   color: #CCCCCC;
   max-width: 520px;
+  line-height: 1.7;
 }
 
 main {
@@ -68,11 +76,11 @@ main {
 
 .section-label {
   font-family: 'Jost', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 17px;
   color: var(--nero);
-  border-left: 4px solid var(--tiffany);
-  padding-left: 12px;
+  border-left: 2px solid var(--tiffany);
+  padding-left: 14px;
   margin: 36px 0 16px;
 }
 .section-label:first-child { margin-top: 0; }
@@ -90,9 +98,9 @@ main {
 .field input[type="email"],
 .field select {
   width: 100%;
-  border: 1px solid #E0E0E0;
-  border-radius: 8px;
-  padding: 10px 12px;
+  border: 1px solid #D6D6D6;
+  border-radius: 0;
+  padding: 11px 12px;
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   color: var(--nero);
@@ -104,14 +112,13 @@ main {
 .field input:focus,
 .field select:focus {
   outline: none;
-  border-color: var(--tiffany);
-  box-shadow: 0 0 0 3px rgba(129,199,189,0.25);
+  border-color: var(--teal-ui);
+  box-shadow: 0 0 0 3px rgba(129,199,189,0.35);
 }
 
 .callout {
   background: var(--superficie);
-  border-left: 4px solid var(--tiffany);
-  border-radius: 0 8px 8px 0;
+  border-left: 2px solid var(--tiffany);
   padding: 14px 18px;
   font-size: 13.5px;
   margin-bottom: 28px;
@@ -121,9 +128,9 @@ main {
   font-family: 'Jost', sans-serif;
   font-weight: 600;
   font-size: 11px;
-  color: var(--tiffany);
+  color: var(--teal-testo);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: .18em;
   margin-bottom: 4px;
 }
 
@@ -131,36 +138,41 @@ main {
 .sector-block.active { display: block; }
 
 .file-field {
-  border: 1px dashed #CCCCCC;
-  border-radius: 8px;
+  border: 1px dashed #C4C4C4;
   padding: 16px;
   background: var(--superficie);
 }
 .file-field label { font-weight: 500; }
-.file-field small { display: block; color: var(--grigio-chiaro); margin-top: 6px; font-size: 12px; }
+.file-field small { display: block; color: var(--grigio-note); margin-top: 6px; font-size: 12px; }
 
 button[type="submit"] {
   font-family: 'Jost', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--bianco);
-  background: var(--nero);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--nero);
+  background: var(--tiffany);
   border: none;
-  border-radius: 8px;
-  padding: 14px 28px;
+  min-height: 52px;
+  padding: 0 34px;
   cursor: pointer;
   margin-top: 12px;
+  transition: background .35s;
 }
-button[type="submit"]:hover { background: #2A2A2A; }
+button[type="submit"]:hover { background: #b8e0db; }
+button[type="submit"]:focus-visible { outline: 2px solid var(--nero); outline-offset: 3px; }
 button[type="submit"]:disabled { opacity: .6; cursor: wait; }
 
 .footer-note {
   margin-top: 40px;
   padding-top: 16px;
   border-top: 1px solid #E8E8E8;
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--grigio-chiaro);
 }
+.footer-note a { color: inherit; }
+.footer-note a:hover { color: var(--nero); }
 .footer-note .fsocial { display: flex; gap: 4px; margin-top: 10px; margin-left: -6px; }
 .footer-note .fsocial a { display: inline-flex; padding: 6px; color: var(--grigio-chiaro); transition: color .3s; }
 .footer-note .fsocial a:hover, .footer-note .fsocial a:focus-visible { color: var(--nero); }
@@ -175,7 +187,8 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
 }
 #thank-you h2 {
   font-family: 'Jost', sans-serif;
-  font-size: 24px;
+  font-weight: 300;
+  font-size: 30px;
   color: var(--nero);
   margin-bottom: 12px;
 }
@@ -186,9 +199,9 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="kicker">Audit di conversione — sito e-commerce</div>
+    <a href="/" class="hero-logo" aria-label="Production32 home"><img src="/assets/logo-white.svg" alt="Production32" width="138" height="24"></a>
+    <div class="kicker">Audit di conversione — sito e‑commerce</div>
     <h1>Qualche domanda per capire dove si perdono le vendite</h1>
-    <div class="rule"></div>
     <p>Compila il modulo qui sotto. Bastano 10-15 minuti; anche risposte parziali sono utili all'analisi. Puoi allegare screenshot o export in fondo alla pagina.</p>
   </div>
 </div>
@@ -230,102 +243,102 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
 
     <div class="section-label">Traffico</div>
     <div class="field">
-      <label>I visitatori mensili riportati sono un dato certo o una stima? Da quale strumento viene ricavato?</label>
-      <textarea name="q1_traffico_stima"></textarea>
+      <label for="q1_traffico_stima">I visitatori mensili riportati sono un dato certo o una stima? Da quale strumento viene ricavato?</label>
+      <textarea id="q1_traffico_stima" name="q1_traffico_stima"></textarea>
     </div>
     <div class="field">
-      <label>Che percentuale del traffico arriva da Instagram, quanta da ricerca su Google, e quanta da eventuale pubblicità a pagamento?</label>
-      <textarea name="q2_traffico_fonti"></textarea>
+      <label for="q2_traffico_fonti">Che percentuale del traffico arriva da Instagram, quanta da ricerca su Google, e quanta da eventuale pubblicità a pagamento?</label>
+      <textarea id="q2_traffico_fonti" name="q2_traffico_fonti"></textarea>
     </div>
     <div class="field">
-      <label>In caso di pubblicità a pagamento, con quale budget e su cosa punta: traffico generico o retargeting?</label>
-      <textarea name="q3_traffico_ads"></textarea>
+      <label for="q3_traffico_ads">In caso di pubblicità a pagamento, con quale budget e su cosa punta: traffico generico o retargeting?</label>
+      <textarea id="q3_traffico_ads" name="q3_traffico_ads"></textarea>
     </div>
 
     <div class="section-label">Comportamento sul sito</div>
     <div class="field">
-      <label>È noto in che punto le persone abbandonano il percorso di acquisto: scheda prodotto, carrello, o pagamento?</label>
-      <textarea name="q4_abbandono"></textarea>
+      <label for="q4_abbandono">È noto in che punto le persone abbandonano il percorso di acquisto: scheda prodotto, carrello, o pagamento?</label>
+      <textarea id="q4_abbandono" name="q4_abbandono"></textarea>
     </div>
     <div class="field">
-      <label>Si ha un'idea di quante persone aggiungono un prodotto al carrello e poi non completano l'acquisto?</label>
-      <textarea name="q5_carrello_incompleto"></textarea>
+      <label for="q5_carrello_incompleto">Si ha un'idea di quante persone aggiungono un prodotto al carrello e poi non completano l'acquisto?</label>
+      <textarea id="q5_carrello_incompleto" name="q5_carrello_incompleto"></textarea>
     </div>
     <div class="field">
-      <label>Sul sito è installato uno strumento di analisi del traffico, anche nella versione gratuita di base?</label>
-      <textarea name="q6_analytics"></textarea>
+      <label for="q6_analytics">Sul sito è installato uno strumento di analisi del traffico, anche nella versione gratuita di base?</label>
+      <textarea id="q6_analytics" name="q6_analytics"></textarea>
     </div>
     <div class="field">
-      <label>Che percentuale di acquisti avviene da mobile rispetto a desktop, se il dato è disponibile?</label>
-      <textarea name="q7_mobile_desktop"></textarea>
+      <label for="q7_mobile_desktop">Che percentuale di acquisti avviene da mobile rispetto a desktop, se il dato è disponibile?</label>
+      <textarea id="q7_mobile_desktop" name="q7_mobile_desktop"></textarea>
     </div>
 
     <div class="section-label">Checkout</div>
     <div class="field">
-      <label>Con quale piattaforma è costruito il sito (Shopify, WooCommerce, altro)?</label>
-      <textarea name="q8_piattaforma"></textarea>
+      <label for="q8_piattaforma">Con quale piattaforma è costruito il sito (Shopify, WooCommerce, altro)?</label>
+      <textarea id="q8_piattaforma" name="q8_piattaforma"></textarea>
     </div>
     <div class="field">
-      <label>Quanti passaggi servono per completare un acquisto, dal carrello alla conferma dell'ordine?</label>
-      <textarea name="q9_passaggi_checkout"></textarea>
+      <label for="q9_passaggi_checkout">Quanti passaggi servono per completare un acquisto, dal carrello alla conferma dell'ordine?</label>
+      <textarea id="q9_passaggi_checkout" name="q9_passaggi_checkout"></textarea>
     </div>
     <div class="field">
-      <label>Quali metodi di pagamento sono disponibili: solo carta, o anche PayPal, Klarna, Satispay?</label>
-      <textarea name="q10_pagamenti"></textarea>
+      <label for="q10_pagamenti">Quali metodi di pagamento sono disponibili: solo carta, o anche PayPal, Klarna, Satispay?</label>
+      <textarea id="q10_pagamenti" name="q10_pagamenti"></textarea>
     </div>
     <div class="field">
-      <label>Il costo di spedizione è visibile fin dall'inizio, o compare solo nell'ultimo passaggio?</label>
-      <textarea name="q11_spedizione_visibile"></textarea>
+      <label for="q11_spedizione_visibile">Il costo di spedizione è visibile fin dall'inizio, o compare solo nell'ultimo passaggio?</label>
+      <textarea id="q11_spedizione_visibile" name="q11_spedizione_visibile"></textarea>
     </div>
 
     <div class="section-label">Recupero vendite perse</div>
     <div class="field">
-      <label>Viene inviata un'email automatica a chi abbandona il carrello? Con quale timing e contenuto?</label>
-      <textarea name="q12_email_carrello"></textarea>
+      <label for="q12_email_carrello">Viene inviata un'email automatica a chi abbandona il carrello? Con quale timing e contenuto?</label>
+      <textarea id="q12_email_carrello" name="q12_email_carrello"></textarea>
     </div>
 
     <div class="section-label">Fiducia del cliente</div>
     <div class="field">
-      <label>Sono presenti recensioni sul sito, oppure esistono solo sui social?</label>
-      <textarea name="q13_recensioni"></textarea>
+      <label for="q13_recensioni">Sono presenti recensioni sul sito, oppure esistono solo sui social?</label>
+      <textarea id="q13_recensioni" name="q13_recensioni"></textarea>
     </div>
     <div class="field">
-      <label>La politica di reso è indicata in modo chiaro e facile da trovare?</label>
-      <textarea name="q14_reso"></textarea>
+      <label for="q14_reso">La politica di reso è indicata in modo chiaro e facile da trovare?</label>
+      <textarea id="q14_reso" name="q14_reso"></textarea>
     </div>
 
     <div class="section-label">Posizionamento</div>
     <div class="field">
-      <label>Quali sono due o tre competitor diretti, e a che prezzo vendono prodotti simili?</label>
-      <textarea name="q15_competitor"></textarea>
+      <label for="q15_competitor">Quali sono due o tre competitor diretti, e a che prezzo vendono prodotti simili?</label>
+      <textarea id="q15_competitor" name="q15_competitor"></textarea>
     </div>
     <div class="field">
-      <label>Il link in bio sui social dove porta esattamente: home, pagina prodotto, landing dedicata?</label>
-      <textarea name="q16_link_bio"></textarea>
+      <label for="q16_link_bio">Il link in bio sui social dove porta esattamente: home, pagina prodotto, landing dedicata?</label>
+      <textarea id="q16_link_bio" name="q16_link_bio"></textarea>
     </div>
     <div class="field">
-      <label>I contenuti pubblicati sui social sono coerenti, per stile e messaggio, con quello che si trova sul sito?</label>
-      <textarea name="q17_coerenza_social"></textarea>
+      <label for="q17_coerenza_social">I contenuti pubblicati sui social sono coerenti, per stile e messaggio, con quello che si trova sul sito?</label>
+      <textarea id="q17_coerenza_social" name="q17_coerenza_social"></textarea>
     </div>
 
     <!-- MODULO GIOIELLERIA -->
     <div class="sector-block" data-sector="Gioielleria / preziosi">
       <div class="section-label">Modulo — Gioielleria / preziosi</div>
       <div class="field">
-        <label>Le certificazioni sui materiali (oro, argento, pietre) sono mostrate in modo che il cliente le percepisca come credibili?</label>
-        <textarea name="a1_certificazioni"></textarea>
+        <label for="a1_certificazioni">Le certificazioni sui materiali (oro, argento, pietre) sono mostrate in modo che il cliente le percepisca come credibili?</label>
+        <textarea id="a1_certificazioni" name="a1_certificazioni"></textarea>
       </div>
       <div class="field">
-        <label>Le foto dei prodotti sono professionali o amatoriali, con modella o solo still life?</label>
-        <textarea name="a2_foto"></textarea>
+        <label for="a2_foto">Le foto dei prodotti sono professionali o amatoriali, con modella o solo still life?</label>
+        <textarea id="a2_foto" name="a2_foto"></textarea>
       </div>
       <div class="field">
-        <label>Le descrizioni prodotto includono misure, materiali e informazioni sul packaging?</label>
-        <textarea name="a3_descrizioni"></textarea>
+        <label for="a3_descrizioni">Le descrizioni prodotto includono misure, materiali e informazioni sul packaging?</label>
+        <textarea id="a3_descrizioni" name="a3_descrizioni"></textarea>
       </div>
       <div class="field">
-        <label>La spedizione di articoli di valore è assicurata, e questo viene comunicato prima dell'acquisto?</label>
-        <textarea name="a4_assicurazione"></textarea>
+        <label for="a4_assicurazione">La spedizione di articoli di valore è assicurata, e questo viene comunicato prima dell'acquisto?</label>
+        <textarea id="a4_assicurazione" name="a4_assicurazione"></textarea>
       </div>
     </div>
 
@@ -333,20 +346,20 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
     <div class="sector-block" data-sector="Moda / abbigliamento">
       <div class="section-label">Modulo — Moda / abbigliamento</div>
       <div class="field">
-        <label>È disponibile una guida taglie chiara, mostrata prima o durante l'aggiunta al carrello?</label>
-        <textarea name="b1_taglie"></textarea>
+        <label for="b1_taglie">È disponibile una guida taglie chiara, mostrata prima o durante l'aggiunta al carrello?</label>
+        <textarea id="b1_taglie" name="b1_taglie"></textarea>
       </div>
       <div class="field">
-        <label>Le foto prodotto mostrano il capo indossato su più modelli/corporature o solo su un modello standard?</label>
-        <textarea name="b2_foto_modelli"></textarea>
+        <label for="b2_foto_modelli">Le foto prodotto mostrano il capo indossato su più modelli/corporature o solo su un modello standard?</label>
+        <textarea id="b2_foto_modelli" name="b2_foto_modelli"></textarea>
       </div>
       <div class="field">
-        <label>La politica di reso per taglia sbagliata è comunicata in modo esplicito prima dell'acquisto?</label>
-        <textarea name="b3_reso_taglia"></textarea>
+        <label for="b3_reso_taglia">La politica di reso per taglia sbagliata è comunicata in modo esplicito prima dell'acquisto?</label>
+        <textarea id="b3_reso_taglia" name="b3_reso_taglia"></textarea>
       </div>
       <div class="field">
-        <label>Sono indicate composizione dei materiali e istruzioni di lavaggio/cura del capo?</label>
-        <textarea name="b4_composizione"></textarea>
+        <label for="b4_composizione">Sono indicate composizione dei materiali e istruzioni di lavaggio/cura del capo?</label>
+        <textarea id="b4_composizione" name="b4_composizione"></textarea>
       </div>
     </div>
 
@@ -354,20 +367,20 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
     <div class="sector-block" data-sector="Food & Beverage">
       <div class="section-label">Modulo — Food & Beverage</div>
       <div class="field">
-        <label>Sono indicati chiaramente scadenza, conservazione e modalità di spedizione (refrigerata, corriere standard)?</label>
-        <textarea name="c1_scadenza"></textarea>
+        <label for="c1_scadenza">Sono indicati chiaramente scadenza, conservazione e modalità di spedizione (refrigerata, corriere standard)?</label>
+        <textarea id="c1_scadenza" name="c1_scadenza"></textarea>
       </div>
       <div class="field">
-        <label>Sono presenti allergeni e valori nutrizionali in modo facilmente reperibile sulla scheda prodotto?</label>
-        <textarea name="c2_allergeni"></textarea>
+        <label for="c2_allergeni">Sono presenti allergeni e valori nutrizionali in modo facilmente reperibile sulla scheda prodotto?</label>
+        <textarea id="c2_allergeni" name="c2_allergeni"></textarea>
       </div>
       <div class="field">
-        <label>Il prodotto è vendibile solo in Italia o anche estero, e questo è comunicato prima del checkout?</label>
-        <textarea name="c3_estero"></textarea>
+        <label for="c3_estero">Il prodotto è vendibile solo in Italia o anche estero, e questo è comunicato prima del checkout?</label>
+        <textarea id="c3_estero" name="c3_estero"></textarea>
       </div>
       <div class="field">
-        <label>Sono indicate certificazioni di origine o denominazione (DOP, IGP, biologico), se rilevanti per il posizionamento?</label>
-        <textarea name="c4_certificazioni_origine"></textarea>
+        <label for="c4_certificazioni_origine">Sono indicate certificazioni di origine o denominazione (DOP, IGP, biologico), se rilevanti per il posizionamento?</label>
+        <textarea id="c4_certificazioni_origine" name="c4_certificazioni_origine"></textarea>
       </div>
     </div>
 
@@ -375,16 +388,16 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
     <div class="sector-block" data-sector="Hotel / ricettività">
       <div class="section-label">Modulo — Hotel / ricettività</div>
       <div class="field">
-        <label>Il motore di prenotazione diretto garantisce lo stesso prezzo o un vantaggio rispetto alle OTA (Booking.com, Expedia)?</label>
-        <textarea name="e1_parita_prezzo"></textarea>
+        <label for="e1_parita_prezzo">Il motore di prenotazione diretto garantisce lo stesso prezzo o un vantaggio rispetto alle OTA (Booking.com, Expedia)?</label>
+        <textarea id="e1_parita_prezzo" name="e1_parita_prezzo"></textarea>
       </div>
       <div class="field">
-        <label>Quanti passaggi servono per completare una prenotazione diretta dal sito, dalla scelta della camera alla conferma?</label>
-        <textarea name="e2_passaggi_prenotazione"></textarea>
+        <label for="e2_passaggi_prenotazione">Quanti passaggi servono per completare una prenotazione diretta dal sito, dalla scelta della camera alla conferma?</label>
+        <textarea id="e2_passaggi_prenotazione" name="e2_passaggi_prenotazione"></textarea>
       </div>
       <div class="field">
-        <label>La politica di cancellazione è visibile prima di inserire i dati di pagamento?</label>
-        <textarea name="e3_cancellazione"></textarea>
+        <label for="e3_cancellazione">La politica di cancellazione è visibile prima di inserire i dati di pagamento?</label>
+        <textarea id="e3_cancellazione" name="e3_cancellazione"></textarea>
       </div>
     </div>
 
@@ -392,16 +405,16 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
     <div class="sector-block" data-sector="Altro">
       <div class="section-label">Modulo — Altro settore</div>
       <div class="field">
-        <label>Ci sono caratteristiche tecniche, normative o di sicurezza del prodotto da conoscere prima dell'acquisto, comunicate in modo chiaro?</label>
-        <textarea name="d1_tecniche"></textarea>
+        <label for="d1_tecniche">Ci sono caratteristiche tecniche, normative o di sicurezza del prodotto da conoscere prima dell'acquisto, comunicate in modo chiaro?</label>
+        <textarea id="d1_tecniche" name="d1_tecniche"></textarea>
       </div>
       <div class="field">
-        <label>Il prodotto richiede installazione, configurazione o assistenza post-vendita, visibile prima del checkout?</label>
-        <textarea name="d2_installazione"></textarea>
+        <label for="d2_installazione">Il prodotto richiede installazione, configurazione o assistenza post-vendita, visibile prima del checkout?</label>
+        <textarea id="d2_installazione" name="d2_installazione"></textarea>
       </div>
       <div class="field">
-        <label>Esistono vincoli di vendita (territoriali, di età, di licenza) indicati chiaramente sul sito?</label>
-        <textarea name="d3_vincoli"></textarea>
+        <label for="d3_vincoli">Esistono vincoli di vendita (territoriali, di età, di licenza) indicati chiaramente sul sito?</label>
+        <textarea id="d3_vincoli" name="d3_vincoli"></textarea>
       </div>
     </div>
 
@@ -414,15 +427,15 @@ button[type="submit"]:disabled { opacity: .6; cursor: wait; }
       <small>Fino a 3 file, 7,5 MB in totale. Formati: immagini (PNG, JPG, WebP), PDF, CSV, Excel. Ad esempio screenshot Google Analytics, export vendite, immagini prodotto.</small>
     </div>
 
-    <div class="field" style="display:flex;align-items:flex-start;gap:10px;background:var(--superficie);border-radius:8px;padding:14px 16px">
-      <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required style="margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--tiffany)">
+    <div class="field" style="display:flex;align-items:flex-start;gap:10px;background:var(--superficie);padding:14px 16px">
+      <input type="checkbox" id="consenso_privacy" name="consenso_privacy" required style="margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--teal-ui)">
       <label for="consenso_privacy" style="font-weight:400;margin-bottom:0">Ho letto l'<a href="/privacy/" target="_blank" rel="noopener" style="color:var(--nero);text-decoration:underline">Informativa Privacy</a> e acconsento al trattamento dei miei dati per l'elaborazione dell'audit richiesto.</label>
     </div>
 
     <button type="submit">Invia questionario</button>
 
     <div class="footer-note">
-      production32.it &nbsp;·&nbsp; losco@production32.it &nbsp;·&nbsp; +39 331 9123544
+      <a href="/">production32.it</a> &nbsp;·&nbsp; <a href="mailto:losco@production32.it">losco@production32.it</a> &nbsp;·&nbsp; <a href="tel:+393319123544">+39 331 9123544</a>
       <div class="fsocial"><a href="https://www.instagram.com/losco.production32/" target="_blank" rel="noopener" aria-label="Production32 su Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/company/production32/" target="_blank" rel="noopener" aria-label="Production32 su LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16"/><circle cx="8" cy="7.9" r=".9" fill="currentColor" stroke="none"/><path d="M12 16v-5.5M12 12.8c0-1.4 1-2.3 2.3-2.3 1.4 0 2.2.9 2.2 2.5V16"/></svg></a></div>
     </div>
   </form>
